@@ -8,6 +8,13 @@ public class PlayerMovement : MonoBehaviour {
     private Turn playerTurn;
     private Tilt playerTilt;
 
+    [Header("Movement settings")]
+    [Range(1.1f, 2.05f)]
+    [Tooltip("m/s")]
+    public float walkingSpeed = 1.1f;
+
+    public float mouseSensitivity = 0.5f;
+
     private void Start() {
       Transform offset = this.transform.Find("Offset");
       offset.transform.position += new Vector3(0f, 1.6f, 0f);
@@ -27,8 +34,8 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     void Update() {
-        Vector2 movementInput = 0.00001f * movementActions.Player.move.ReadValue<Vector2>() / Time.deltaTime;
-        Vector2 rotationInput = 0.0005f * movementActions.Player.look.ReadValue<Vector2>() / Time.deltaTime;
+        Vector2 movementInput = movementActions.Player.move.ReadValue<Vector2>() * walkingSpeed;
+        Vector2 rotationInput = movementActions.Player.look.ReadValue<Vector2>() * mouseSensitivity;
 
         playerTranslation.move(movementInput);
         playerTurn.turn(rotationInput.x);
