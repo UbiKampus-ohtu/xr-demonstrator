@@ -100,8 +100,30 @@
                 },
                 {
                     "name": "",
+                    "id": "0eedd95a-2575-430f-a0f8-415da746f699",
+                    "path": "<XRController>{LeftHand}/joystick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "d9ba2b31-de3c-43f0-a17b-56a53b4d31db",
                     "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d6ce31cf-ac95-4f61-a68a-91be667dd05a",
+                    "path": "<XRController>{RightHand}/joystick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

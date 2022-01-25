@@ -23,6 +23,7 @@ public class BasicMovement : MonoBehaviour {
       playerTurn = gameObject.AddComponent<Turn>();
       playerTilt = gameObject.AddComponent<Tilt>();
       playerTilt.setTarget(offset);
+      playerTilt.enabled = !UnityEngine.XR.XRSettings.enabled;
     }
 
     private void Awake() {
