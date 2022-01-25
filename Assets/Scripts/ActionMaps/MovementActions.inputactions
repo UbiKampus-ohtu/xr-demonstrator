@@ -1,5 +1,5 @@
 {
-    "name": "Movement",
+    "name": "MovementActions",
     "maps": [
         {
             "name": "Player",
@@ -22,6 +22,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "click",
+                    "type": "Button",
+                    "id": "65c0a358-b122-48fa-a59d-b62e188eb43e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "grab",
+                    "type": "Button",
+                    "id": "895c26d3-c6df-4b15-b746-5dca487a8fcd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -88,6 +106,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "db616557-8fb4-4af1-8a7c-86d93cbe269d",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "951c4ab0-809b-41fc-bafa-8f2c7aebbeb4",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "grab",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

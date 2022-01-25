@@ -16,6 +16,7 @@ public class Translate : MonoBehaviour {
     if (controller == null) {
       controller = targetTransform.gameObject.AddComponent<CharacterController>();
       controller.center = new Vector3(0, 1f, 0);
+      controller.radius = 0.5f;
     }
   }
 
@@ -31,6 +32,7 @@ public class Translate : MonoBehaviour {
   }
 
   private void Update() {
+    controller.detectCollisions = false;
     if (controller.isGrounded && velocity.magnitude > 0) {
       velocity = Vector3.zero;
     }

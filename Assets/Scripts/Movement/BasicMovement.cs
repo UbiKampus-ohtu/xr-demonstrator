@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour {
+public class BasicMovement : MonoBehaviour {
     private MovementActions movementActions;
     private Translate playerTranslation;
     private Turn playerTurn;

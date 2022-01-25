@@ -44,6 +44,24 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""click"",
+                    ""type"": ""Button"",
+                    ""id"": ""65c0a358-b122-48fa-a59d-b62e188eb43e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""grab"",
+                    ""type"": ""Button"",
+                    ""id"": ""895c26d3-c6df-4b15-b746-5dca487a8fcd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -112,6 +130,28 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                     ""action"": ""look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""db616557-8fb4-4af1-8a7c-86d93cbe269d"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""951c4ab0-809b-41fc-bafa-8f2c7aebbeb4"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""grab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -122,6 +162,8 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_move = m_Player.FindAction("move", throwIfNotFound: true);
         m_Player_look = m_Player.FindAction("look", throwIfNotFound: true);
+        m_Player_click = m_Player.FindAction("click", throwIfNotFound: true);
+        m_Player_grab = m_Player.FindAction("grab", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -183,12 +225,16 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_move;
     private readonly InputAction m_Player_look;
+    private readonly InputAction m_Player_click;
+    private readonly InputAction m_Player_grab;
     public struct PlayerActions
     {
         private @MovementActions m_Wrapper;
         public PlayerActions(@MovementActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @move => m_Wrapper.m_Player_move;
         public InputAction @look => m_Wrapper.m_Player_look;
+        public InputAction @click => m_Wrapper.m_Player_click;
+        public InputAction @grab => m_Wrapper.m_Player_grab;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -204,6 +250,12 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                 @look.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
                 @look.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
                 @look.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
+                @click.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnClick;
+                @click.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnClick;
+                @click.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnClick;
+                @grab.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrab;
+                @grab.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrab;
+                @grab.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrab;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -214,6 +266,12 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                 @look.started += instance.OnLook;
                 @look.performed += instance.OnLook;
                 @look.canceled += instance.OnLook;
+                @click.started += instance.OnClick;
+                @click.performed += instance.OnClick;
+                @click.canceled += instance.OnClick;
+                @grab.started += instance.OnGrab;
+                @grab.performed += instance.OnGrab;
+                @grab.canceled += instance.OnGrab;
             }
         }
     }
@@ -222,5 +280,7 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
+        void OnClick(InputAction.CallbackContext context);
+        void OnGrab(InputAction.CallbackContext context);
     }
 }
