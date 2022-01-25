@@ -1,11 +1,11 @@
-# Large files
-*.png
-*.jpg
-*.fbx
-*.exr
-*.wav
-*.ttf
-*.TTF
+# Large files are pushed to LFS
+# *.png
+# *.jpg
+# *.fbx
+# *.exr
+# *.wav
+# *.ttf
+# *.TTF
 
 # This .gitignore file should be placed at the root of your Unity project directory
 #
