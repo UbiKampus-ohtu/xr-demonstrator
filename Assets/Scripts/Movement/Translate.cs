@@ -20,14 +20,13 @@ public class Translate : MonoBehaviour {
     }
   }
 
-  //use this to move the player with an xr device
   public void setPosition(Vector3 deltaPosition) {
     deltaPosition.y = 0f;
     controller.Move(targetTransform.rotation * deltaPosition);
   }
 
-  public void move(Vector2 movement) {
-    Vector3 velocity = targetTransform.rotation * new Vector3(movement.x, 0, movement.y);
+  public void move(Vector2 movement, Quaternion referenceRotation) {
+    Vector3 velocity = referenceRotation * new Vector3(movement.x, 0, movement.y);
     controller.Move(velocity * Time.deltaTime);
   }
 
