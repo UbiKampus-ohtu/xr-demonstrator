@@ -19,10 +19,15 @@ public class XRInputs : MonoBehaviour {
     return devices[0];
   }
 
+  private void recenter() {
+    hmd.subsystem.TryRecenter();
+  }
+
   void Start() {
     hmd = findHMD();
     leftHand = findHand(true);
     rightHand = findHand(false);
+    recenter();
   }
 
   private Vector3 getDeviceLocalPosition(InputDevice device) {

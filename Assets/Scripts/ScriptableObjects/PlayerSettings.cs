@@ -16,4 +16,6 @@ public class PlayerSettings : ScriptableObject {
   public float mouseSensitivity = 0.5f;
 
   public float playerEyelineHeight = 1.65f;
+
+  public float colliderRadius = 0.25f;
 }

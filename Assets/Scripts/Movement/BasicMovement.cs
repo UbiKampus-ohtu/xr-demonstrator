@@ -12,6 +12,7 @@ public class BasicMovement : MonoBehaviour {
   private Vector3 hmdPreviousPosition;
   public PlayerSettings settings;
   Transform offset;
+  Transform viewport;
 
   private void Start() {
     playerTranslation = gameObject.AddComponent<Translate>();
@@ -19,14 +20,18 @@ public class BasicMovement : MonoBehaviour {
     playerTilt = gameObject.AddComponent<Tilt>();
     
     offset = this.transform.Find("Offset");
-    offset.transform.position += new Vector3(0f, settings.playerEyelineHeight, 0f);
+    viewport = offset.Find("Viewport");
+
     playerTilt.setTarget(offset);
+    playerTranslation.colliderRadius = settings.colliderRadius;
 
     if (xrEnabled && UnityEngine.XR.XRSettings.enabled) {
       xrEnabled = true;
       playerTilt.enabled = false;
       xrInputs = gameObject.AddComponent<XRInputs>();
       hmdPreviousPosition = xrInputs.getHMDLocalPosition();
+    } else {
+      offset.transform.position += new Vector3(0f, settings.playerEyelineHeight, 0f);
     }
   }
 
@@ -42,20 +47,16 @@ public class BasicMovement : MonoBehaviour {
     Vector2 movementInput = movementActions.Player.move.ReadValue<Vector2>() * settings.walkingSpeed;
     Vector2 rotationInput = movementActions.Player.look.ReadValue<Vector2>() * settings.mouseSensitivity;
 
-    Quaternion referenceRotation = offset.rotation * Quaternion.Euler(-offset.rotation.eulerAngles.x, 0, 0);
+    Quaternion referenceRotation = viewport.rotation * Quaternion.Euler(-viewport.rotation.eulerAngles.x, 0, -viewport.rotation.eulerAngles.z);
     playerTranslation.move(movementInput, referenceRotation);
     playerTurn.turn(rotationInput.x);
     playerTilt.tilt(-rotationInput.y);
 
     if (xrEnabled) {
-      offset.localRotation = xrInputs.getHMDLocalRotation();
-      Vector3 hmdLocalPosition = xrInputs.getHMDLocalPosition();
-      Vector3 hmdDeltaPosition = hmdLocalPosition - hmdPreviousPosition;
-
-      hmdDeltaPosition.y = 0f;
-      hmdPreviousPosition = hmdLocalPosition;
-      offset.localPosition = new Vector3(0f, hmdLocalPosition.y, 0f);
-      playerTranslation.setPosition(hmdDeltaPosition);
-    }    
+      viewport.localRotation = xrInputs.getHMDLocalRotation();
+      viewport.localPosition = xrInputs.getHMDLocalPosition();
+      //replace localposition with deltamovement
+      //the xr view will drift from the capsule collider if the user moves
+    }
   }
 }

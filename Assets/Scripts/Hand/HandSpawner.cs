@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UseHand : MonoBehaviour {
+public class HandSpawner : MonoBehaviour {
   public GameObject handPrefab;
   public bool twoHands = false;
 
-  private void spawnHand() {
+  private void spawnHand(string name) {
     GameObject hand = Instantiate(handPrefab);
     hand.transform.parent = this.transform;
+    hand.name = name;
   }
 
   void Start() {
-    spawnHand();
+    spawnHand("right hand");
   }
 }

@@ -10,13 +10,15 @@ public class Translate : MonoBehaviour {
   private Vector3 gravity = new Vector3(0, -9.81f, 0);
   private Vector3 fallVelocity;
 
+  public float colliderRadius = 0.5f;
+
   private void Start() {
     targetTransform = this.transform;
     controller = targetTransform.GetComponent<CharacterController>();
     if (controller == null) {
       controller = targetTransform.gameObject.AddComponent<CharacterController>();
       controller.center = new Vector3(0, 1f, 0);
-      controller.radius = 0.5f;
+      controller.radius = colliderRadius;
     }
   }
 
