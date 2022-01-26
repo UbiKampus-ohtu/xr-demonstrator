@@ -8,7 +8,7 @@ public class Translate : MonoBehaviour {
   private CharacterController controller;
 
   private Vector3 gravity = new Vector3(0, -9.81f, 0);
-  private Vector3 velocity;
+  private Vector3 fallVelocity;
 
   private void Start() {
     targetTransform = this.transform;
@@ -27,17 +27,17 @@ public class Translate : MonoBehaviour {
   }
 
   public void move(Vector2 movement) {
-    Vector3 movement3 = targetTransform.rotation * new Vector3(movement.x, 0, movement.y);
-    controller.Move(movement3 * Time.deltaTime);
+    Vector3 velocity = targetTransform.rotation * new Vector3(movement.x, 0, movement.y);
+    controller.Move(velocity * Time.deltaTime);
   }
 
   private void Update() {
     controller.detectCollisions = false;
-    if (controller.isGrounded && velocity.magnitude > 0) {
-      velocity = Vector3.zero;
+    if (controller.isGrounded && fallVelocity.magnitude > 0) {
+      fallVelocity = Vector3.zero;
     }
 
-    velocity += gravity * Time.deltaTime;
-    controller.SimpleMove(velocity);
+    fallVelocity += gravity * Time.deltaTime;
+    controller.SimpleMove(fallVelocity);
   }
 }

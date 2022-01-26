@@ -273,8 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfbe03e5ad25ad2429fce9f8ca27c0f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkingSpeed: 1.506
-  mouseSensitivity: 0.5
+  settings: {fileID: 11400000, guid: 734c3259128a3fc4fa674b51b0d04d9b, type: 2}
 --- !u!1 &3716118206278037514
 GameObject:
   m_ObjectHideFlags: 0
