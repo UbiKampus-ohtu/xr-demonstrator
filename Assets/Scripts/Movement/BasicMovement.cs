@@ -19,7 +19,7 @@ public class BasicMovement : MonoBehaviour {
     playerTilt = gameObject.AddComponent<Tilt>();
     
     offset = this.transform.Find("Offset");
-    offset.transform.position += new Vector3(0f, 1.6f, 0f);
+    offset.transform.position += new Vector3(0f, settings.playerEyelineHeight, 0f);
     playerTilt.setTarget(offset);
 
     if (xrEnabled && UnityEngine.XR.XRSettings.enabled) {

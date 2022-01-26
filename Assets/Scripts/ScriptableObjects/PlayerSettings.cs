@@ -14,4 +14,6 @@ public class PlayerSettings : ScriptableObject {
   public float runSpeed = 2.05f;
 
   public float mouseSensitivity = 0.5f;
+
+  public float playerEyelineHeight = 1.65f;
 }
