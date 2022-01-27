@@ -3,21 +3,47 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Button : MonoBehaviour {
-  private Vector3 localRestPosition;
-  private Material material;
-  private bool released = true;
   public Color color;
   public Color emissive;
-  public string eventName = "button";
-  public string buttonName = "0";
+
   public float travel = 0.1f;
   public Vector3 buttonMovementDirection;
 
+  public string eventName = "button";
+  public string buttonName = "0";
+
+  private bool released = true;
+  private Transform buttonRoot;
+  private Vector3 localRestPosition;
+  private Material lightBulbMaterial;
+
+  private void initLightBulbMaterial() {
+    GameObject lightBulb = buttonRoot.Find("Light").gameObject;
+    if (lightBulb != null) {
+      lightBulbMaterial = lightBulb.GetComponent<MeshRenderer>().material;
+      lightBulbMaterial.color = color;
+      lightBulbMaterial.SetColor("_EmissionColor", emissive);
+    } 
+  }
+
+  private void initButtonMaterial() {
+    GameObject button = buttonRoot.Find("Button").gameObject;
+    if (button != null) {
+      Material buttonMaterial = button.GetComponent<MeshRenderer>().material;
+      buttonMaterial.color = color;
+    }
+  }
+
   void Start() {
-    localRestPosition = transform.localPosition;
-    material = gameObject.GetComponent<MeshRenderer>().material;
-    material.color = color;
-    material.SetColor("_EmissionColor", emissive);
+    buttonRoot = transform.Find("PushButton");
+    if (buttonRoot == null) {
+      buttonRoot = this.transform;
+    }
+    localRestPosition = buttonRoot.localPosition;
+    
+    initLightBulbMaterial();
+    initButtonMaterial();
+
     if (buttonMovementDirection.magnitude == 0) {
       buttonMovementDirection = Vector3.forward;
     } else {
@@ -38,7 +64,7 @@ public class Button : MonoBehaviour {
     }
 
     if (other.gameObject.name.Equals("fingertip") && released) {
-      transform.localPosition += transform.localRotation * buttonMovementDirection * travel;
+      buttonRoot.localPosition += buttonRoot.localRotation * buttonMovementDirection * travel;
       EventManager.trigger(eventName + " pressed", buttonName);
       released = false;
     }
@@ -50,7 +76,7 @@ public class Button : MonoBehaviour {
     }
 
     if (other.gameObject.name.Equals("fingertipExit")) {
-      transform.localPosition = localRestPosition;
+      buttonRoot.localPosition = localRestPosition;
       EventManager.trigger(eventName + " released", buttonName);
       released = true;
     }
@@ -58,9 +84,9 @@ public class Button : MonoBehaviour {
 
   public void setEmission(bool state) {
     if (state) {
-      material.EnableKeyword("_EMISSION");
+      lightBulbMaterial.EnableKeyword("_EMISSION");
     } else {
-      material.DisableKeyword("_EMISSION");
+      lightBulbMaterial.DisableKeyword("_EMISSION");
     }
   }
 

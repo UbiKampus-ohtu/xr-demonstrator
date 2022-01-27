@@ -11,7 +11,8 @@ public class Nopeustesti : MonoBehaviour {
   private float timer;
   private float waitTime;
   public bool started = false;
-
+  
+  private Transform scoreBar;
   private UnityAction listener;
 
   AudioSource audioSource;
@@ -46,20 +47,27 @@ public class Nopeustesti : MonoBehaviour {
     } else if (score <= 30) {
       return 0.461f;
     } else if (score <= 40) {
+      setScoreBarScale(0.1337f);
       return 0.410f;
     } else if (score <= 70) {
       return 0.390f;
     } else if (score <= 100) {
+      setScoreBarScale(0.2707299f);
       return 0.360f;
     } else if (score <= 200) {
+      setScoreBarScale(0.4192793f);
       return 0.306f;
     } else if (score <= 250) {
+      setScoreBarScale(0.575419f);
       return 0.250f;
     } else if (score <= 300) {
+      setScoreBarScale(0.7062118f);
       return 0.230f;
     } else if (score <= 350) {
+      setScoreBarScale(0.8653919f);
       return 0.210f;
     }
+    setScoreBarScale(1);
     return 0.190f;
   }
 
@@ -87,12 +95,20 @@ public class Nopeustesti : MonoBehaviour {
   private void Start() {
     buttons = transform.GetComponentsInChildren<Button>();
     audioSource = gameObject.GetComponent<AudioSource>();
+    scoreBar = transform.Find("score");
+  }
+
+  private void setScoreBarScale(float scale) {
+    Vector3 newScale = scoreBar.transform.localScale;
+    newScale.x = scale;
+    scoreBar.transform.localScale = newScale;
   }
 
   public void begin(string param) {
     if (started) {
       return;
     }
+    setScoreBarScale(0f);
     foreach(var button in buttons) {
       button.setEmission(false);
     }
