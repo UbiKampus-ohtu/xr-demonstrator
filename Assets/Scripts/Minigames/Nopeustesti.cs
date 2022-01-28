@@ -10,12 +10,12 @@ public class Nopeustesti : MonoBehaviour {
   private int previousButtonIndex;
   private float timer;
   private float waitTime;
-  public bool started = false;
+  private bool started = false;
   
   private Transform scoreBar;
   private UnityAction listener;
 
-  AudioSource audioSource;
+  private AudioSource audioSource;
   public List<AudioClip> audioClips = new List<AudioClip>();
 
   private void addButton() {

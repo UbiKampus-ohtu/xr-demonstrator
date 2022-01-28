@@ -12,10 +12,14 @@ public class Button : MonoBehaviour {
   public string eventName = "button";
   public string buttonName = "0";
 
+  public AudioClip buttonPressSound;
+  public AudioClip buttonDepressSound;
+
   private bool released = true;
   private Transform buttonRoot;
   private Vector3 localRestPosition;
   private Material lightBulbMaterial;
+  private AudioSource audioSource;
 
   private void initLightBulbMaterial() {
     GameObject lightBulb = buttonRoot.Find("Light").gameObject;
@@ -35,6 +39,8 @@ public class Button : MonoBehaviour {
   }
 
   void Start() {
+    audioSource = gameObject.GetComponent<AudioSource>();
+
     buttonRoot = transform.Find("PushButton");
     if (buttonRoot == null) {
       buttonRoot = this.transform;
@@ -58,6 +64,15 @@ public class Button : MonoBehaviour {
     return true;
   }
 
+  private void playSound(bool isDown) {
+    if (isDown) {
+      audioSource.clip = buttonPressSound;
+    } else {
+      audioSource.clip = buttonDepressSound;
+    }
+    audioSource.Play();
+  }
+
   private void OnTriggerEnter(Collider other) {
     if (!validTrigger(other.tag)) {
       return;
@@ -66,6 +81,7 @@ public class Button : MonoBehaviour {
     if (other.gameObject.name.Equals("fingertip") && released) {
       buttonRoot.localPosition += buttonRoot.localRotation * buttonMovementDirection * travel;
       EventManager.trigger(eventName + " pressed", buttonName);
+      playSound(true);
       released = false;
     }
   }
@@ -78,6 +94,7 @@ public class Button : MonoBehaviour {
     if (other.gameObject.name.Equals("fingertipExit")) {
       buttonRoot.localPosition = localRestPosition;
       EventManager.trigger(eventName + " released", buttonName);
+      playSound(false);
       released = true;
     }
   }
