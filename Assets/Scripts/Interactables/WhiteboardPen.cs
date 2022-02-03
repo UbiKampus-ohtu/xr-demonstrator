@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WhiteboardPen : MonoBehaviour {
 
+  public int brushSize = 8;
   private Vector2 previousPosition = Vector2.zero;
   private bool drawingStarted = false;
 
@@ -23,9 +24,9 @@ public class WhiteboardPen : MonoBehaviour {
     Vector2 currentPosition = new Vector2(localPosition.x, -localPosition.y);
 
     if (drawingStarted) {
-      whiteboard.line(previousPosition.x, currentPosition.x, previousPosition.y, currentPosition.y, Color.black, 3);
+      whiteboard.line(previousPosition.x, currentPosition.x, previousPosition.y, currentPosition.y, Color.black, brushSize);
     } else {
-      whiteboard.draw(currentPosition.x, currentPosition.y, Color.black, 3);
+      whiteboard.draw(currentPosition.x, currentPosition.y, Color.black, brushSize);
     }
     
     previousPosition = currentPosition;
@@ -41,8 +42,8 @@ public class WhiteboardPen : MonoBehaviour {
     }
 
     if (nextSurface.collider.gameObject.name != "Canvas") {
-      Debug.Log(nextSurface.collider.gameObject);
       drawingStarted = false;
+      Debug.Log(nextSurface.collider.gameObject.name);
       return;
     }
 

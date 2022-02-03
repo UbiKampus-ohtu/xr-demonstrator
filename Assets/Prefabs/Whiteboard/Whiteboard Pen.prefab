@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 9080068335749481935}
   - component: {fileID: 9080068335749481934}
-  m_Layer: 8
+  - component: {fileID: 9074437186906935001}
+  m_Layer: 9
   m_Name: Whiteboard Pen
-  m_TagString: Finger
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,6 +45,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 210c32287795a164a9e822e11c4fec67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  brushSize: 8
+--- !u!114 &9074437186906935001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9080068335749481932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c1ba162025ad8a46891ec193da7e883, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  precisionTool: 1
+  offset: {x: -0.0063, y: 0.031, z: 0.0704}
 --- !u!1 &9080068336492672916
 GameObject:
   m_ObjectHideFlags: 0
@@ -56,7 +72,7 @@ GameObject:
   - component: {fileID: 9080068336492672912}
   - component: {fileID: 9080068336492672913}
   - component: {fileID: 9080068336492672918}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,8 +148,8 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9080068336492672916}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1

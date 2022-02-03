@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 9036191482929669426}
   m_Layer: 0
   m_Name: Nopeustesti
-  m_TagString: Untagged
+  m_TagString: Interaction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

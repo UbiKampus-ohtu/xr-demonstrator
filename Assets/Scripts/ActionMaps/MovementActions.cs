@@ -167,7 +167,7 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""951c4ab0-809b-41fc-bafa-8f2c7aebbeb4"",
-                    ""path"": """",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
