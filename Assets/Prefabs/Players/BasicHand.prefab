@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3011986519355746483}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Thumb2_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4982835601921375422}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Index2_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2487435180283804310}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: handArmature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7046342345240407889}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fingers1_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8181384204781571474}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fingers2_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6641436563848813700}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fingers3_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,7 +194,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4580193308339562074}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 4042724970869087416}
   - component: {fileID: 4042724970869087419}
   - component: {fileID: 4042724970869087418}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BasicHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -375,7 +375,7 @@ GameObject:
   - component: {fileID: 4042724972578242946}
   - component: {fileID: 4042724972578243005}
   - component: {fileID: 831170458346160569}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: fingertip
   m_TagString: Finger
   m_Icon: {fileID: 0}
@@ -436,7 +436,7 @@ GameObject:
   - component: {fileID: 623327614812858754}
   - component: {fileID: 3664050012416553811}
   - component: {fileID: 8775770855616527130}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: fingertipExit
   m_TagString: Finger
   m_Icon: {fileID: 0}
@@ -495,7 +495,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4639785440970122027}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Index3_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -525,7 +525,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2225722746365641535}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Thumb_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -555,7 +555,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1651644184379410934}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Thumb1_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -587,7 +587,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4333930292071185225}
   - component: {fileID: 9103775484875257495}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -678,7 +678,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3117380453839585095}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrist_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -711,7 +711,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1612508700607247650}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Index1_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}

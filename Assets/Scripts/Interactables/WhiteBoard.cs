@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class WhiteBoard : MonoBehaviour {
   public Color whiteboardBackground;
-  //public RenderTexture whiteboardTexture;
   private Texture2D canvas;
   
-  private int height = 128;
-  private int width = 128;
+  private int height = 1024;
+  private int width = 1024;
 
   private Color[] pixels;
 
@@ -19,15 +18,63 @@ public class WhiteBoard : MonoBehaviour {
     canvas.filterMode = FilterMode.Point;
     pixels = canvas.GetPixels(0);
 
-    fillRect(0, 1, 0, 1, Color.green);
+    fillRect(0, 1, 0, 1, whiteboardBackground);
   }
 
-  public void draw(float x0, float y0, Color color) {
+  public void draw(float x0, float y0, Color color, int radius = 0) {
     int x = (int)(x0 % 1 * width);
     int y = (int)(y0 % 1 * height);
 
-    pixels[x + width * y] = color;
+    drawInt(x, y, color, radius);
     apply();
+  }
+
+  private void drawInt(int x, int y, Color color, int radius = 0) {
+    int cursor = x + width * y;
+    if (radius == 0) {
+      if (cursor >= 0 && cursor < width * height) {
+        pixels[x + width * y] = color;
+      }
+      return;
+    }
+
+    fillRectInt(x - radius, x + radius, y - radius, y + radius, color);
+  }
+
+  public void line(float _x0, float _x1, float _y0, float _y1, Color color, int radius = 0) {
+    int x0 = (int)(_x0 % 1 * width);
+    int x1 = (int)(_x1 % 1 * width);
+    int y0 = (int)(_y0 % 1 * height);
+    int y1 = (int)(_y1 % 1 * height);
+
+    int xStep = x1 - x0;
+    int yStep = y1 - y0;
+
+    float distance = new Vector2(xStep, yStep).magnitude;
+    int steps = (int)distance;
+    if (radius > 0) {
+      steps = (int)(distance / (float)radius);
+    }
+
+    for (int i = 1; i < steps; i++) {
+      float coeff = (float)i / steps;
+      int dx = (int)(xStep * coeff);
+      int dy = (int)(yStep * coeff);
+      drawInt(x0 + dx, y0 + dy, color, radius);
+    }
+    drawInt(x1, y1, color, radius);
+    apply();
+  }
+
+  private void fillRectInt (int x0, int x1, int y0, int y1, Color color) {
+    for (int y = y0; y < y1; y++) {
+      for (int x = x0; x < x1; x++) {
+        int cursor = x + width * y;
+        if (cursor >= 0 && cursor < width * height) {
+          pixels[x + width * y] = color;
+        }
+      }
+    }
   }
 
   public void fillRect (float x0, float x1, float y0, float y1, Color color) {
@@ -36,12 +83,7 @@ public class WhiteBoard : MonoBehaviour {
     int yStart = (int)(y0 * height);
     int yEnd = (int)(y1 * height);
 
-    for (int y = yStart; y < yEnd; y++) {
-      for (int x = xStart; x < xEnd; x++) {
-        pixels[x + width * y] = color;
-      }
-    }
-
+    fillRectInt(xStart, xEnd, yStart, yEnd, color);
     apply();
   }
 
@@ -49,12 +91,4 @@ public class WhiteBoard : MonoBehaviour {
     canvas.SetPixels(pixels, 0);
     canvas.Apply();
   }
-
-  /*
-  float j = 0;
-  private void Update() {
-    j += 0.001f;
-    rect(0, j, 0, 1, Color.red);
-  }
-  */
 }
