@@ -87,6 +87,8 @@ MonoBehaviour:
   buttonName: 0
   buttonPressSound: {fileID: 8300000, guid: 3de08eabd90057a4b87c1fbf94cd8524, type: 3}
   buttonDepressSound: {fileID: 8300000, guid: 1597e8c8785e645429b3b2736547abe3, type: 3}
+  lightBulbMaterialActive: {fileID: 2100000, guid: 0b2b42d19c3ba804ebbca62e9fad8df1,
+    type: 2}
 --- !u!136 &2324308411978421504
 CapsuleCollider:
   m_ObjectHideFlags: 0

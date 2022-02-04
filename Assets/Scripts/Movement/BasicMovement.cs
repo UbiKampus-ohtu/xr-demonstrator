@@ -8,7 +8,7 @@ public class BasicMovement : MonoBehaviour {
   private Turn playerTurn;
   private Tilt playerTilt;
   private XRInputs xrInputs;
-  public bool xrEnabled = false;
+  private bool xrEnabled = false;
   private Vector3 hmdPreviousPosition;
   public PlayerSettings settings;
   Transform offset;
@@ -25,7 +25,7 @@ public class BasicMovement : MonoBehaviour {
     playerTilt.setTarget(offset);
     playerTranslation.colliderRadius = settings.colliderRadius;
 
-    if (xrEnabled && UnityEngine.XR.XRSettings.enabled) {
+    if (UnityEngine.XR.XRSettings.enabled) {
       xrEnabled = true;
       playerTilt.enabled = false;
       xrInputs = gameObject.AddComponent<XRInputs>();

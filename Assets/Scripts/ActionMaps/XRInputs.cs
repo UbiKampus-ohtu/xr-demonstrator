@@ -5,6 +5,11 @@ using UnityEngine.XR;
 
 public class XRInputs : MonoBehaviour {
   private InputDevice hmd, leftHand, rightHand;
+  public bool xrEnabled = false;
+
+  public static bool isXrEnabled() {
+    return UnityEngine.XR.XRSettings.enabled;
+  }
 
   private InputDevice findHand(bool isLeft) {
     var devices = new List<InputDevice>();
@@ -24,6 +29,10 @@ public class XRInputs : MonoBehaviour {
   }
 
   void Start() {
+    xrEnabled = UnityEngine.XR.XRSettings.enabled;
+    if (!xrEnabled) {
+      return;
+    }
     hmd = findHMD();
     leftHand = findHand(true);
     rightHand = findHand(false);

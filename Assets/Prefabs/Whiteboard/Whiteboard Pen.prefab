@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 210c32287795a164a9e822e11c4fec67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brushSize: 8
+  brushSize: 2
 --- !u!114 &9074437186906935001
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -19,21 +19,26 @@ public class Button : MonoBehaviour {
   private Transform buttonRoot;
   private Vector3 localRestPosition;
   private Material lightBulbMaterial;
+  public Material lightBulbMaterialActive;
   private AudioSource audioSource;
+
+  private MeshRenderer lightbulbRenderer;
+  private MeshRenderer buttonRenderer;
 
   private void initLightBulbMaterial() {
     GameObject lightBulb = buttonRoot.Find("Light").gameObject;
     if (lightBulb != null) {
-      lightBulbMaterial = lightBulb.GetComponent<MeshRenderer>().material;
+      lightbulbRenderer = lightBulb.GetComponent<MeshRenderer>();
+      lightBulbMaterial = lightbulbRenderer.material;
       lightBulbMaterial.color = color;
-      lightBulbMaterial.SetColor("_EmissionColor", emissive);
     } 
   }
 
   private void initButtonMaterial() {
     GameObject button = buttonRoot.Find("Button").gameObject;
     if (button != null) {
-      Material buttonMaterial = button.GetComponent<MeshRenderer>().material;
+      buttonRenderer = button.GetComponent<MeshRenderer>();
+      Material buttonMaterial = buttonRenderer.material;
       buttonMaterial.color = color;
     }
   }
@@ -101,13 +106,10 @@ public class Button : MonoBehaviour {
 
   public void setEmission(bool state) {
     if (state) {
-      lightBulbMaterial.EnableKeyword("_EMISSION");
+      lightbulbRenderer.material = lightBulbMaterialActive;
+      lightbulbRenderer.material.SetColor("_EmissionColor", color * 5f);
     } else {
-      lightBulbMaterial.DisableKeyword("_EMISSION");
+      lightbulbRenderer.material = lightBulbMaterial;
     }
-  }
-
-  void Update() {
-
   }
 }

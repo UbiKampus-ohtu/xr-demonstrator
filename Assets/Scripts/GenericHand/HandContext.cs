@@ -15,9 +15,16 @@ public class HandContext : MonoBehaviour {
 
   private Pickup pickup = null;
 
+  public bool leftHand = false;
+
   private void Start() {
     hand = GetComponent<GenericHand>();
     handModelTransform = transform.Find("hand");
+
+    if (leftHand) {
+      handModelTransform.localScale = new Vector3(-1, 1, 1);
+      handModelOffset.x = -handModelOffset.x;
+    }
     handModelTransform.localPosition = handModelOffset;
   }
 
@@ -34,7 +41,7 @@ public class HandContext : MonoBehaviour {
     if (grabbing) {
       return;
     }
-    if (other.transform.parent.GetComponent<Pickup>() != null) {
+    if (other != null && other.transform.parent != null && other.transform.parent.GetComponent<Pickup>() != null) {
       hand.setContext("grab ready", true);
       pickup = other.transform.parent.GetComponent<Pickup>();
       grabReady = true;
