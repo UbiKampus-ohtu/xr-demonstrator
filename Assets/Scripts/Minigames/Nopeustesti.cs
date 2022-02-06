@@ -18,6 +18,8 @@ public class Nopeustesti : MonoBehaviour {
   private AudioSource audioSource;
   public List<AudioClip> audioClips = new List<AudioClip>();
 
+  private SegmentDisplay display;
+
   private void addButton() {
     int newButtonIndex = Random.Range(0, 4);
     if (newButtonIndex != previousButtonIndex) {
@@ -86,6 +88,7 @@ public class Nopeustesti : MonoBehaviour {
       started = false;
     } else {
       score++;
+      display.set(score.ToString());
       if (buttonQueue.Count == 0) {
         addButton();
       }
@@ -96,6 +99,7 @@ public class Nopeustesti : MonoBehaviour {
     buttons = transform.GetComponentsInChildren<Button>();
     audioSource = gameObject.GetComponent<AudioSource>();
     scoreBar = transform.Find("score");
+    display = transform.GetComponentInChildren<SegmentDisplay>();
   }
 
   private void setScoreBarScale(float scale) {
@@ -112,6 +116,7 @@ public class Nopeustesti : MonoBehaviour {
     foreach(var button in buttons) {
       button.setEmission(false);
     }
+    display.clear();
     score = 0;
     started = true;
     timer = 0f;
