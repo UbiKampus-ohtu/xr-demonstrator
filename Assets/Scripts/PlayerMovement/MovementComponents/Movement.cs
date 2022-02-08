@@ -7,6 +7,8 @@ public class Movement : MonoBehaviour {
   public PlayerSettings settings;
   [HideInInspector]
   public bool xrEnabled = false;
+  [HideInInspector]
+  public bool gravity = true;
 
   private Translate playerTranslation;
   private Turn playerTurn;
@@ -28,6 +30,7 @@ public class Movement : MonoBehaviour {
 
     playerTilt.setTarget(offset);
     playerTranslation.colliderRadius = settings.colliderRadius;
+    playerTranslation.gravityEnabled = gravity;
 
     if (!xrEnabled) {
       offset.transform.position += new Vector3(0f, settings.playerEyelineHeight, 0f);

@@ -57,6 +57,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ac4ef7e2b116a34badb71c9f4d2517b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  URI: localhost
+  port: 9000
 --- !u!114 &7901808269339267038
 MonoBehaviour:
   m_ObjectHideFlags: 0

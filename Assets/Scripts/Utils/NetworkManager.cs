@@ -15,7 +15,7 @@ public class SerializablePayload {
 
 public class NetworkManager : MonoBehaviour {
   public string URI = "localhost";
-  public int port = 8000;
+  public int port = 9000;
 
   private IPEndPoint serverEndPoint;
   private bool connected = false;
