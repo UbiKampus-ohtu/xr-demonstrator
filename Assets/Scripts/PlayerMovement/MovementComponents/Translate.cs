@@ -10,6 +10,7 @@ public class Translate : MonoBehaviour {
   private Vector3 gravity = new Vector3(0, -9.81f, 0);
   private Vector3 fallVelocity;
 
+  [HideInInspector]
   public float colliderRadius = 0.5f;
 
   private void Start() {
@@ -23,16 +24,24 @@ public class Translate : MonoBehaviour {
   }
 
   public void setPosition(Vector3 deltaPosition) {
+    if (controller == null) return;
     deltaPosition.y = 0f;
     controller.Move(targetTransform.rotation * deltaPosition);
   }
 
+  public void setAbsolutePosition(Vector3 position) {
+    if (controller == null) return;
+    controller.Move(position - targetTransform.position);
+  }
+
   public void move(Vector2 movement, Quaternion referenceRotation) {
+    if (controller == null) return;
     Vector3 velocity = referenceRotation * new Vector3(movement.x, 0, movement.y);
     controller.Move(velocity * Time.deltaTime);
   }
 
   private void Update() {
+    if (controller == null) return;
     controller.detectCollisions = false;
     if (controller.isGrounded && fallVelocity.magnitude > 0) {
       fallVelocity = Vector3.zero;

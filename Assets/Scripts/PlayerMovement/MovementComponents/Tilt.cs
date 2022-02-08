@@ -10,7 +10,6 @@ public class Tilt : MonoBehaviour {
     targetTransform = target;
   }
 
-
   public void tilt(float degrees) {
     deltaRotation = Quaternion.Euler(degrees, 0f, 0f);
   }
