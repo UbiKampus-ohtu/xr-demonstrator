@@ -18,7 +18,7 @@ public class CreateBoxColliders : MonoBehaviour
            {
                BoxCollider bc = gameObject.AddComponent(typeof(BoxCollider)) as BoxCollider;
                bc.center = new Vector3(Colliders.origin.x, Colliders.origin.y, Colliders.origin.z);
-               bc.size = new Vector3(Colliders.dimensions.width, Colliders.dimensions.depth, Colliders.dimensions.height);
+               bc.size = new Vector3(Colliders.dimensions.width, Colliders.dimensions.height, Colliders.dimensions.depth);
            }
        } 
        else
