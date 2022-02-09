@@ -6,11 +6,12 @@ using UnityEngine;
 [Serializable]
 public class MovementPayload {
   public Vector3 pos;
-  public Vector3 dir;
+  public Vector3 rot;
 }
 
 public class NetworkPlayerMovement : PlayerMovement {
   private Vector3 playerPosition = Vector3.zero;
+  private Vector3 playerRotation = Vector3.zero;
 
   public override void Start() {
     base.Start();
