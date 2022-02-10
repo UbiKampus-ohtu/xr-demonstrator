@@ -62,6 +62,24 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""teleport"",
+                    ""type"": ""Button"",
+                    ""id"": ""784f7dd4-84f9-4c1e-8aa1-77c6d1938416"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""teleportMove"",
+                    ""type"": ""Button"",
+                    ""id"": ""8036d183-eb69-40b0-a432-2e1953201433"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -185,6 +203,17 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                     ""action"": ""grab"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8b809afa-f3cd-4b6f-b4a4-0bc144a914d3"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""teleport"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -197,6 +226,8 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
         m_Player_look = m_Player.FindAction("look", throwIfNotFound: true);
         m_Player_click = m_Player.FindAction("click", throwIfNotFound: true);
         m_Player_grab = m_Player.FindAction("grab", throwIfNotFound: true);
+        m_Player_teleport = m_Player.FindAction("teleport", throwIfNotFound: true);
+        m_Player_teleportMove = m_Player.FindAction("teleportMove", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -260,6 +291,8 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_look;
     private readonly InputAction m_Player_click;
     private readonly InputAction m_Player_grab;
+    private readonly InputAction m_Player_teleport;
+    private readonly InputAction m_Player_teleportMove;
     public struct PlayerActions
     {
         private @MovementActions m_Wrapper;
@@ -268,6 +301,8 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
         public InputAction @look => m_Wrapper.m_Player_look;
         public InputAction @click => m_Wrapper.m_Player_click;
         public InputAction @grab => m_Wrapper.m_Player_grab;
+        public InputAction @teleport => m_Wrapper.m_Player_teleport;
+        public InputAction @teleportMove => m_Wrapper.m_Player_teleportMove;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -289,6 +324,12 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                 @grab.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrab;
                 @grab.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrab;
                 @grab.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrab;
+                @teleport.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTeleport;
+                @teleport.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTeleport;
+                @teleport.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTeleport;
+                @teleportMove.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTeleportMove;
+                @teleportMove.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTeleportMove;
+                @teleportMove.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTeleportMove;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -305,6 +346,12 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                 @grab.started += instance.OnGrab;
                 @grab.performed += instance.OnGrab;
                 @grab.canceled += instance.OnGrab;
+                @teleport.started += instance.OnTeleport;
+                @teleport.performed += instance.OnTeleport;
+                @teleport.canceled += instance.OnTeleport;
+                @teleportMove.started += instance.OnTeleportMove;
+                @teleportMove.performed += instance.OnTeleportMove;
+                @teleportMove.canceled += instance.OnTeleportMove;
             }
         }
     }
@@ -315,5 +362,7 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnClick(InputAction.CallbackContext context);
         void OnGrab(InputAction.CallbackContext context);
+        void OnTeleport(InputAction.CallbackContext context);
+        void OnTeleportMove(InputAction.CallbackContext context);
     }
 }
