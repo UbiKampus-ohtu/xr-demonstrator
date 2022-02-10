@@ -57,7 +57,6 @@ GameObject:
   m_Component:
   - component: {fileID: 40009098175836490}
   - component: {fileID: 40009098175836488}
-  - component: {fileID: 4890663461841720050}
   m_Layer: 0
   m_Name: Offset
   m_TagString: Untagged
@@ -98,20 +97,6 @@ MonoBehaviour:
   handPrefab: {fileID: 8522195667210585543, guid: 183ac95239464034b8ac05c78a9a5215,
     type: 3}
   twoHands: 0
---- !u!114 &4890663461841720050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 40009098175836491}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbbed307c92aab278989045bf6c83c7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerCharacter: {fileID: 0}
-  teleportationSphere: {fileID: 0}
 --- !u!1 &40009099326104600
 GameObject:
   m_ObjectHideFlags: 0

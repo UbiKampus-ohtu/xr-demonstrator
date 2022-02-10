@@ -15,6 +15,6 @@ MonoBehaviour:
   prefabName: 
   walkingSpeed: 1.1
   runSpeed: 2.374
-  mouseSensitivity: 0.5
+  mouseSensitivity: 0.05
   playerEyelineHeight: 1.65
   colliderRadius: 0.1
