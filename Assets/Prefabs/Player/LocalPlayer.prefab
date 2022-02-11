@@ -56,7 +56,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 40009098175836490}
-  - component: {fileID: 40009098175836488}
   m_Layer: 0
   m_Name: Offset
   m_TagString: Untagged
@@ -82,21 +81,6 @@ Transform:
   m_Father: {fileID: 40009097998235990}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &40009098175836488
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 40009098175836491}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d395363bab7bd2247985f419cba3e246, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  handPrefab: {fileID: 8522195667210585543, guid: 183ac95239464034b8ac05c78a9a5215,
-    type: 3}
-  twoHands: 0
 --- !u!1 &40009099326104600
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,7 +314,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6532675187865878373}
   - component: {fileID: 4383164200846965595}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Teleporter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -363,7 +347,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbbed307c92aab278989045bf6c83c7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCharacter: {fileID: 40009097998235988}
   teleportationSphere: {fileID: 5619682734113737469, guid: 04c7096b7dd689bdeb6eff6f7494475b,
     type: 3}
 --- !u!1001 &2293969029269689683
