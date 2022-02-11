@@ -12,6 +12,8 @@ public class Teleportation : MonoBehaviour {
 
   private bool initialized = false;
 
+  private TeleporterHandle teleporterHandle;
+
   void Awake() {
     mv = new MovementActions();
   }
@@ -43,22 +45,25 @@ public class Teleportation : MonoBehaviour {
 
   private void SpawnTeleportationCircle() {
     sphere = Instantiate(teleportationSphere);
+    teleporterHandle = sphere.GetComponent<TeleporterHandle>();
   }
 
   private void UpdateTeleportationCircle() {
     if (sphere == null) return;
-    
+
     LayerMask mask = LayerMask.GetMask("Default");
     float distance = 10f;
 
     Ray ray = new Ray(transform.position, transform.TransformDirection(Vector3.forward));
     if (Physics.Raycast(ray, out var hit, distance, mask)) {
       if (hit.transform.CompareTag("Floor")) {
-        deltaPosition = hit.point - ray.origin;
+        deltaPosition = hit.point - ray.origin + new Vector3(0, 0.05f, 0);
         sphere.transform.position = hit.point;
+        teleporterHandle.setValid(true);
       } else {
+        deltaPosition = Vector3.zero;
         sphere.transform.position = hit.point;
-        //Muuta teleportaatiospawner ruksiksi tjsp
+        teleporterHandle.setValid(false);
       }
     }
   }
@@ -73,7 +78,11 @@ public class Teleportation : MonoBehaviour {
   }
 
   private void CollectTeleportationCircle() {
-    Destroy(sphere);
+    if (teleporterHandle != null) {
+      teleporterHandle.exit();
+      teleporterHandle = null;
+    }
+    Destroy(sphere, 0.5f);
     deltaPosition = Vector3.zero;
   }
 

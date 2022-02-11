@@ -347,7 +347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbbed307c92aab278989045bf6c83c7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teleportationSphere: {fileID: 5619682734113737469, guid: 04c7096b7dd689bdeb6eff6f7494475b,
+  teleportationSphere: {fileID: 3558986613270949189, guid: b85c49764c7e2f7469928b364e4a73e2,
     type: 3}
 --- !u!1001 &2293969029269689683
 PrefabInstance:
