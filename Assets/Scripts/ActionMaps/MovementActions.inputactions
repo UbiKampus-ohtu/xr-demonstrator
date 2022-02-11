@@ -40,6 +40,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "teleport",
+                    "type": "Button",
+                    "id": "784f7dd4-84f9-4c1e-8aa1-77c6d1938416",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "teleportMove",
+                    "type": "Button",
+                    "id": "8036d183-eb69-40b0-a432-2e1953201433",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -161,6 +179,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "grab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8b809afa-f3cd-4b6f-b4a4-0bc144a914d3",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "teleport",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

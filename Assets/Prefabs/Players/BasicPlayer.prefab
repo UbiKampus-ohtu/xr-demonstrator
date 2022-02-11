@@ -41,11 +41,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 671626628289035541}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfbe03e5ad25ad2429fce9f8ca27c0f5, type: 3}
+  m_Script: {fileID: 11500000, guid: 04b710eb7fa90a046b1ed6f0b9b678a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xrEnabled: 0
-  settings: {fileID: 11400000, guid: 734c3259128a3fc4fa674b51b0d04d9b, type: 2}
+  playerType: 0
+  settings: {fileID: 0}
 --- !u!1 &671626628503598346
 GameObject:
   m_ObjectHideFlags: 0
