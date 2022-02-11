@@ -82,7 +82,7 @@ public class Teleportation : MonoBehaviour {
       teleporterHandle.exit();
       teleporterHandle = null;
     }
-    Destroy(sphere, 0.5f);
+    Destroy(sphere);
     deltaPosition = Vector3.zero;
   }
 
