@@ -65,21 +65,12 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""teleport"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""784f7dd4-84f9-4c1e-8aa1-77c6d1938416"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""teleportMove"",
-                    ""type"": ""Button"",
-                    ""id"": ""8036d183-eb69-40b0-a432-2e1953201433"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -165,7 +156,7 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                     ""id"": ""d6ce31cf-ac95-4f61-a68a-91be667dd05a"",
                     ""path"": ""<XRController>{RightHand}/joystick"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""ScaleVector2(x=20,y=20)"",
                     ""groups"": """",
                     ""action"": ""look"",
                     ""isComposite"": false,
@@ -205,9 +196,64 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""8b809afa-f3cd-4b6f-b4a4-0bc144a914d3"",
+                    ""name"": ""2D Vector"",
+                    ""id"": ""2eca53ce-b32f-48d1-815b-f1a8acce5dac"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""teleport"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""c9060cf1-4b0f-4202-9a6b-93607729b8ef"",
                     ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""teleport"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""67304c2c-7098-47b9-a560-a73e457722f7"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""teleport"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""4582b39b-7573-4228-bc58-d91fa5b8dfbb"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""teleport"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""6d2ec59d-fd3f-4d3c-9fed-c66df25b383a"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""teleport"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e0b195da-dd6d-4913-9737-b8470e7592d4"",
+                    ""path"": ""<XRController>{RightHand}/joystick"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -227,7 +273,6 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
         m_Player_click = m_Player.FindAction("click", throwIfNotFound: true);
         m_Player_grab = m_Player.FindAction("grab", throwIfNotFound: true);
         m_Player_teleport = m_Player.FindAction("teleport", throwIfNotFound: true);
-        m_Player_teleportMove = m_Player.FindAction("teleportMove", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -292,7 +337,6 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_click;
     private readonly InputAction m_Player_grab;
     private readonly InputAction m_Player_teleport;
-    private readonly InputAction m_Player_teleportMove;
     public struct PlayerActions
     {
         private @MovementActions m_Wrapper;
@@ -302,7 +346,6 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
         public InputAction @click => m_Wrapper.m_Player_click;
         public InputAction @grab => m_Wrapper.m_Player_grab;
         public InputAction @teleport => m_Wrapper.m_Player_teleport;
-        public InputAction @teleportMove => m_Wrapper.m_Player_teleportMove;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -327,9 +370,6 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                 @teleport.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTeleport;
                 @teleport.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTeleport;
                 @teleport.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTeleport;
-                @teleportMove.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTeleportMove;
-                @teleportMove.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTeleportMove;
-                @teleportMove.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTeleportMove;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -349,9 +389,6 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                 @teleport.started += instance.OnTeleport;
                 @teleport.performed += instance.OnTeleport;
                 @teleport.canceled += instance.OnTeleport;
-                @teleportMove.started += instance.OnTeleportMove;
-                @teleportMove.performed += instance.OnTeleportMove;
-                @teleportMove.canceled += instance.OnTeleportMove;
             }
         }
     }
@@ -363,6 +400,5 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
         void OnClick(InputAction.CallbackContext context);
         void OnGrab(InputAction.CallbackContext context);
         void OnTeleport(InputAction.CallbackContext context);
-        void OnTeleportMove(InputAction.CallbackContext context);
     }
 }

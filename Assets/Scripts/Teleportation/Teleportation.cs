@@ -22,13 +22,14 @@ public class Teleportation : MonoBehaviour {
     mv.Enable();
   }
 
-  private bool keyPressed = false;
+  private bool debounced = true;
   void Update() {
-    if (!keyPressed && mv.Player.teleport.ReadValue<float>() >= 0.5f) {
-      keyPressed = true;
+    bool keyPressed = mv.Player.teleport.ReadValue<Vector2>().y >= 0.3f;
+    if (debounced && keyPressed) {
+      debounced = false;
       SpawnTeleportationCircle();
-    } else if (keyPressed && mv.Player.teleport.ReadValue<float>() < 0.5f) {
-      keyPressed = false;
+    } else if (!debounced && !keyPressed) {
+      debounced = true;
       HandleTeleportation();
     }
 

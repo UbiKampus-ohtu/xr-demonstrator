@@ -32,7 +32,7 @@ public class InputPlayerMovement : PlayerMovement {
 
     movement.move(movementInput);
     movement.turn(rotationInput.x);
-    
+
     if (xrEnabled) {
       movement.setViewportRotation(xrInputs.getHMDLocalRotation());
       movement.setViewportPosition(xrInputs.getHMDLocalPosition());
