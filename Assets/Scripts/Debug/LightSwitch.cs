@@ -13,7 +13,7 @@ public class LightSwitch : MonoBehaviour {
     thisLight.enabled = false;
   }
 
-  //registers to eventmanager on gameobject activation
+  //registers to eventmanager on gameobject activation. add " pressed" to eventname to trigger on button press, " released" to trigger on release
   private void OnEnable() {
     EventManager.startListening(eventName + " pressed", toggleLight);
   }
@@ -23,7 +23,7 @@ public class LightSwitch : MonoBehaviour {
     EventManager.stopListening(eventName + " pressed", toggleLight);
   }
 
-  //action that is called as a callback, when the event name is triggered in eventmanager
+  //method that is called as a callback, when the event name is triggered in eventmanager
   public void toggleLight(string param) {
     Debug.LogFormat("lightId: {0} paramId:{1}", lightId, param);
 
