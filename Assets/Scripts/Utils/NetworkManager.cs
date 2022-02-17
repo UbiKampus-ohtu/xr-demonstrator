@@ -7,12 +7,6 @@ using System.Net.Sockets;
 using UnityEngine;
 using UnityEngine.Events;
 
-[Serializable]
-public class SerializablePayload {
-  public string id;
-  public string data;
-}
-
 public class NetworkManager : MonoBehaviour {
   public string URI = "localhost";
   public int port = 9000;
