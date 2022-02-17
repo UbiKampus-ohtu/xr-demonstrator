@@ -7,7 +7,7 @@ public class Button : MonoBehaviour {
   public Color emissive;
 
   public float travel = 0.1f;
-  public Vector3 buttonMovementDirection;
+  private Vector3 buttonMovementDirection = new Vector3(0, -1, 0);
 
   public string eventName = "button";
   public string buttonName = "0";
