@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 using System.Net;
 using System.Net.Sockets;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class NetworkManager : MonoBehaviour {
   public string URI = "localhost";
@@ -26,15 +23,30 @@ public class NetworkManager : MonoBehaviour {
           Debug.Log("sfdljasklfjalsf");
         } else {
           networkManager.init();
+          networkManager.connect();
         }
       }
       return networkManager;
     }
   }
 
-  private void Start() {
-    if (!connected) {
-      connect();
+  private void init() {
+    if (eventDictionary == null) {
+      eventDictionary = new Dictionary<string, Action<object>>();
+    }
+  }
+
+  private void connect() {
+    if (connected) return;
+
+    try {
+      udpClient = new UdpClient(port);
+      udpClient.BeginReceive(new AsyncCallback(onMessage), udpClient);
+      connected = true;
+    } catch (Exception err) {
+      Debug.LogErrorFormat("Failed to initialize connection: {0}", err.ToString());
+      connected = false;
+      udpClient = null;
     }
   }
 
@@ -118,6 +130,7 @@ public class NetworkManager : MonoBehaviour {
   }
 
   private void onMessage(IAsyncResult message) {
+
     UdpClient socket = message.AsyncState as UdpClient;
     IPEndPoint sender = new IPEndPoint(0, 0);
     byte[] data = socket.EndReceive(message, ref sender);
@@ -133,29 +146,6 @@ public class NetworkManager : MonoBehaviour {
       parseGeneralMessage(data);
     } else if (data[0] == 2) {
       parsePlayerData(data);
-    }
-  }
-
-  private void connect() {
-    try {
-      udpClient = new UdpClient(port);
-      udpClient.BeginReceive(new AsyncCallback(onMessage), udpClient);
-      connected = true;
-      Debug.LogFormat("listening port {0}", port);
-      ConsoleToGUI.Log("listening");
-    } catch (Exception err) {
-      ConsoleToGUI.Log("connection blocked");
-      Debug.LogErrorFormat("Failed to initialize connection: {0}", err.ToString());
-      connected = false;
-    }
-  }
-
-  private void init() {
-    if (eventDictionary == null) {
-      eventDictionary = new Dictionary<string, Action<object>>();
-    }
-    if (!connected) {
-      connect();
     }
   }
 
@@ -180,10 +170,13 @@ public class NetworkManager : MonoBehaviour {
   }
 
   private void trigger(string eventId, object payload) {
-    ConsoleToGUI.Log(String.Format("{0} {1}", eventId, payload));
     Action<object> thisEvent = null;
     if (instance.eventDictionary.TryGetValue(eventId, out thisEvent)) {
       thisEvent.Invoke(payload);
     }
+  }
+
+  private void OnApplicationQuit() {
+    udpClient.Close();
   }
 }
