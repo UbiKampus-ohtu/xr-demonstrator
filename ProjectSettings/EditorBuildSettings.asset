@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Sprint1Demo.unity
     guid: 33188d7f08e8b9e4f9a3a2a66aac51a8
+  - enabled: 1
+    path: Assets/Scenes/RoomNetworkTesting.unity
+    guid: 0407d784f759d1a439c561ea26979049
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: a2b56e71099a2124ab40097270c499e0,
       type: 2}

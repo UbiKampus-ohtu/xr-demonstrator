@@ -142,7 +142,9 @@ public class NetworkManager : MonoBehaviour {
       udpClient.BeginReceive(new AsyncCallback(onMessage), udpClient);
       connected = true;
       Debug.LogFormat("listening port {0}", port);
+      ConsoleToGUI.Log("listening");
     } catch (Exception err) {
+      ConsoleToGUI.Log("connection blocked");
       Debug.LogErrorFormat("Failed to initialize connection: {0}", err.ToString());
       connected = false;
     }
@@ -178,7 +180,7 @@ public class NetworkManager : MonoBehaviour {
   }
 
   private void trigger(string eventId, object payload) {
-    Debug.Log(payload);
+    ConsoleToGUI.Log(String.Format("{0} {1}", eventId, payload));
     Action<object> thisEvent = null;
     if (instance.eventDictionary.TryGetValue(eventId, out thisEvent)) {
       thisEvent.Invoke(payload);
