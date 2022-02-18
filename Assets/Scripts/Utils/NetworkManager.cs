@@ -7,12 +7,6 @@ using System.Net.Sockets;
 using UnityEngine;
 using UnityEngine.Events;
 
-[Serializable]
-public class SerializablePayload {
-  public string id;
-  public string data;
-}
-
 public class NetworkManager : MonoBehaviour {
   public string URI = "localhost";
   public int port = 9000;
@@ -21,7 +15,7 @@ public class NetworkManager : MonoBehaviour {
   private bool connected = false;
   private UdpClient udpClient;
 
-  private Dictionary<string, Action<string>> eventDictionary;
+  private Dictionary<string, Action<object>> eventDictionary;
   
   private static NetworkManager networkManager;
   public static NetworkManager instance {
@@ -52,6 +46,77 @@ public class NetworkManager : MonoBehaviour {
     return new IPEndPoint(addressList[0], port);
   }
 
+  private int sendGeneralMessageSegment(byte[] data, int cursor) {
+    string target = "";
+    string payload = "";
+    bool targetParsed = false;
+    bool finished = false;
+
+    while (cursor < data.Length && !targetParsed) {
+      if (data[cursor] == '\n') {
+        targetParsed = true;
+      } else {
+        target += (char)data[cursor];
+      }
+      cursor++;
+    }
+
+    while (cursor < data.Length - 1 && !finished) {
+      if (data[cursor] == '\n') {
+        trigger(target, payload);
+
+        if (data[cursor + 1] == '\n') {
+          finished = true;
+          cursor++;
+        } else {
+          payload = "";
+        }
+
+      } else {
+        payload += (char)data[cursor];
+      }
+      cursor++;
+    }
+
+    return cursor;
+  }
+
+  private void parseGeneralMessage(byte[] data) {
+    int cursor = 1;
+    while (cursor < data.Length) {
+      cursor = sendGeneralMessageSegment(data, cursor);
+    }
+  }
+
+  private float [] parsePlayerTransform(byte[] data, int cursor) {
+    float [] transform = new float[7];
+    Buffer.BlockCopy(data, cursor, transform, 0, 7 * 4);
+    return transform;
+  }
+
+  private void parsePlayerData(byte[] data) {
+    int cursor = 1;
+    int previousPlayer = -1;
+    int messageNumber = 0;
+
+    while (cursor < data.Length) {
+      int playerId = data[cursor];
+      float [] transform = parsePlayerTransform(data, cursor + 1);
+
+      if (playerId != previousPlayer) {
+        messageNumber = 0;
+        previousPlayer = playerId;
+      } else {
+        messageNumber++;
+      }
+
+      string eventId = String.Format("player {0} {1} transform", playerId, messageNumber);
+      trigger(eventId, transform);
+
+      cursor += 7 * 4;
+    }
+  }
+
   private void onMessage(IAsyncResult message) {
     UdpClient socket = message.AsyncState as UdpClient;
     IPEndPoint sender = new IPEndPoint(0, 0);
@@ -60,8 +125,15 @@ public class NetworkManager : MonoBehaviour {
     udpClient.BeginReceive(new AsyncCallback(onMessage), udpClient);
 
     Debug.LogFormat("Received {0} bytes", data.Length);
-    string payload = Encoding.UTF8.GetString(data);
-    trigger(payload);
+
+    if (data.Length == 0) {
+      return;
+    }
+    if (data[0] == 1) {
+      parseGeneralMessage(data);
+    } else if (data[0] == 2) {
+      parsePlayerData(data);
+    }
   }
 
   private void connect() {
@@ -78,20 +150,15 @@ public class NetworkManager : MonoBehaviour {
 
   private void init() {
     if (eventDictionary == null) {
-      eventDictionary = new Dictionary<string, Action<string>>();
+      eventDictionary = new Dictionary<string, Action<object>>();
     }
     if (!connected) {
       connect();
     }
   }
 
-  private string [] parsePayload(string payload) {
-    SerializablePayload payloadJson = JsonUtility.FromJson<SerializablePayload>(payload);
-    return new string []{payloadJson.id, payloadJson.data};
-  }
-
-  public static void startListening(string eventName, Action<string> listener) {
-    Action<string> thisEvent = null;
+  public static void startListening(string eventName, Action<object> listener) {
+    Action<object> thisEvent = null;
     if (instance.eventDictionary.TryGetValue(eventName, out thisEvent)) {
       thisEvent += listener;
       instance.eventDictionary[eventName] = thisEvent;
@@ -101,25 +168,20 @@ public class NetworkManager : MonoBehaviour {
     }
   }
 
-  public static void stopListening(string eventName, Action<string> listener) {
+  public static void stopListening(string eventName, Action<object> listener) {
     if (networkManager == null) return;
-    Action<string> thisEvent = null;
+    Action<object> thisEvent = null;
     if (instance.eventDictionary.TryGetValue(eventName, out thisEvent)) {
       thisEvent -= listener;
       instance.eventDictionary[eventName] = thisEvent;
     }
   }
 
-  private void trigger(string payload) {
-    string [] parsedPayload = parsePayload(payload);
-    //Debug.LogFormat("id: {0}, data: {1}", parsedPayload[0], parsedPayload[1]);
-
-    string eventId = parsedPayload[0];
-    string data = parsedPayload[1];
-
-    Action<string> thisEvent = null;
+  private void trigger(string eventId, object payload) {
+    Debug.Log(payload);
+    Action<object> thisEvent = null;
     if (instance.eventDictionary.TryGetValue(eventId, out thisEvent)) {
-      thisEvent.Invoke(data);
+      thisEvent.Invoke(payload);
     }
   }
 }
