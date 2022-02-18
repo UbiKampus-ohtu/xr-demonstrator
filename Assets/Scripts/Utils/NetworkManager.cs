@@ -56,7 +56,7 @@ public class NetworkManager : MonoBehaviour {
       if (data[cursor] == '\n') {
         targetParsed = true;
       } else {
-        target += data[cursor];
+        target += (char)data[cursor];
       }
       cursor++;
     }
@@ -73,7 +73,7 @@ public class NetworkManager : MonoBehaviour {
         }
 
       } else {
-        payload += data[cursor];
+        payload += (char)data[cursor];
       }
       cursor++;
     }
@@ -178,6 +178,7 @@ public class NetworkManager : MonoBehaviour {
   }
 
   private void trigger(string eventId, object payload) {
+    Debug.Log(payload);
     Action<object> thisEvent = null;
     if (instance.eventDictionary.TryGetValue(eventId, out thisEvent)) {
       thisEvent.Invoke(payload);
