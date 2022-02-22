@@ -357,7 +357,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &1366766975
 AudioListener:
   m_ObjectHideFlags: 0
@@ -434,6 +434,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LocalPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 40009097998235988, guid: 1dd7d3c57a5772c4695443811728aac0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 40009097998235990, guid: 1dd7d3c57a5772c4695443811728aac0,
         type: 3}
