@@ -4,6 +4,23 @@ using System.Net;
 using System.Net.Sockets;
 using UnityEngine;
 
+public class TransformToBytes {
+  public static byte [] get (Transform thisTransform) {
+    float [] transformComponents = {
+      thisTransform.position.x,
+      thisTransform.position.y,
+      thisTransform.position.z,
+      thisTransform.rotation.x,
+      thisTransform.rotation.y,
+      thisTransform.rotation.z,
+      thisTransform.rotation.w
+    };
+    byte [] result = new byte[7 * 4];
+    Buffer.BlockCopy(transformComponents, 0, result, 0, 7 * 4);
+    return result;
+  }
+}
+
 public class NetworkManager : MonoBehaviour {
   public string URI = "localhost";
   public int port = 9000;
@@ -103,6 +120,7 @@ public class NetworkManager : MonoBehaviour {
   private float [] parsePlayerTransform(byte[] data, int cursor) {
     float [] transform = new float[7];
     Buffer.BlockCopy(data, cursor, transform, 0, 7 * 4);
+    Debug.LogFormat("{0} {1} {2} {3} {4} {5} {6}", transform[0], transform[1], transform[2], transform[3], transform[4], transform[5], transform[6]);
     return transform;
   }
 
@@ -123,7 +141,7 @@ public class NetworkManager : MonoBehaviour {
       }
 
       string eventId = String.Format("player {0} {1} transform", playerId, messageNumber);
-      trigger(eventId, transform);
+      trigger(eventId, transform[0]);
 
       cursor += 7 * 4;
     }
