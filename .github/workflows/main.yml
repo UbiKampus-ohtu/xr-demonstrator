@@ -15,8 +15,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: checkdir
+      - run: "ls"
       - uses: game-ci/unity-test-runner@v2
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
+          projectPath: xr-demonstrator
           githubToken: ${{ secrets.GITHUB_TOKEN }}
+      
