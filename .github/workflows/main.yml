@@ -13,7 +13,7 @@ jobs:
           - UbiKampus-ohtu/xr-demonstrator
         testMode:
           - playmode
-          - editmode
+        # - editmode
     steps:
       - uses: actions/checkout@v2
         with:
