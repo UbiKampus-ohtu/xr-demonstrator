@@ -15,10 +15,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - run: "ls"
       - uses: game-ci/unity-test-runner@v2
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
-          projectPath: UbiKampus-ohtu/xr-demonstrator
+          unityVersion: 2019.4.35f1
           githubToken: ${{ secrets.GITHUB_TOKEN }}
