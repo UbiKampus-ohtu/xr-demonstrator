@@ -3,8 +3,8 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-  testAllModes:
-    name: Test in ${{ matrix.testMode }}
+  testPlayMode:
+    name: Test in playmode
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -13,7 +13,6 @@ jobs:
           - ./
         testMode:
           - playmode
-        # - editmode
     steps:
       - uses: actions/checkout@v2
         with:
@@ -39,3 +38,28 @@ jobs:
         with:
           name: Test results for ${{ matrix.testMode }}
           path: ${{ steps.tests.outputs.artifactsPath }}
+  build:
+    name: Build project for Linux64
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          lfs: true
+
+      # Build
+      - name: Build project
+        uses: game-ci/unity-builder@v2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          targetPlatform: StandaloneLinux64 
+
+      # Output
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Build
+          path: build
