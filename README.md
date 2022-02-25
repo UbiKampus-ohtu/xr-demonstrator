@@ -1,5 +1,7 @@
 # XR demonstrator for UbiKampus
 
+![GitHub Actions](https://github.com/makeri89/ohtu-miniprojekti/workflows/CI/badge.svg)
+
 ## Description 
 
 Description of the project.
