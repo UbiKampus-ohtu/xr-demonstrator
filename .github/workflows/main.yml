@@ -10,7 +10,7 @@ jobs:
       fail-fast: false
       matrix:
         projectPath:
-          - UbiKampus-ohtu/xr-demonstrator
+          - ./
         testMode:
           - playmode
         # - editmode
@@ -20,8 +20,8 @@ jobs:
           lfs: true
       - uses: actions/cache@v2
         with:
-          path: Library
-          key: Library-xr-demonstrator
+          path: ${{ matrix.projectPath }}/Library
+          key: Library-${{ matrix.projectPath }}
           restore-keys: |
             Library-
       - uses: game-ci/unity-test-runner@v2
