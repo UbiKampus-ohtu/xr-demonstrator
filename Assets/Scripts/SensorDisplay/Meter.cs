@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class Meter : MonoBehaviour {
 	private float timer;
-	private float timerB;
-  private float waitTime;
 	private string eventId;
 	private Vector3 columnScale;
 	private Vector3 columnZchange;
@@ -22,7 +20,6 @@ public class Meter : MonoBehaviour {
 		columnZchange = new Vector3(0,0,0);
 		eventId = string.Format("{0} motionSensor", gameObject.name);
     EventManager.startListening(eventId, prepareScaleChange);
-		//EventManager.startListening(eventId, grows);
   }
 
 	private void OnDisable() {
@@ -31,10 +28,6 @@ public class Meter : MonoBehaviour {
 
 	private void Update() {
     timer += Time.deltaTime;
-		timerB += Time.deltaTime;
-		if (columnTransform.localScale.z <= 0.1f) {
-			print("TIMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE: " + timerB);
-		}
 
     if (timer >= 10f) {
 			if (movement) {
@@ -80,7 +73,6 @@ public class Meter : MonoBehaviour {
 
 	private void growColumn() {
 		if (columnZchange.z + columnScale.z < 1f) {
-			//columnScale = columnTransform.localScale += new Vector3(0,0,0.01f);
 			columnScale = columnTransform.localScale += columnZchange;
 		} else {
 			columnScale = columnTransform.localScale = new Vector3(columnTransform.localScale.x, columnTransform.localScale.y, 1f);
