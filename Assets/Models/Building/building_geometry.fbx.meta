@@ -3,7 +3,62 @@ guid: 76b43e98d98babf479c1794cb52147fb
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: column
+    second: {fileID: 2100000, guid: e7d4820b09d362a408e92894eb6d3d8a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: floor
+    second: {fileID: 2100000, guid: 513c7dc007dbfa74a8c056c5778be341, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: floor_blue
+    second: {fileID: 2100000, guid: c01c7fe6204ad4f40acf7e12d5137941, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: floor_purple
+    second: {fileID: 2100000, guid: 16ca75329922b864bb3eb82b10316f90, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glass
+    second: {fileID: 2100000, guid: ed939992f631fc441a61abfdce82fa79, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lights
+    second: {fileID: 2100000, guid: 8484dedc524ed7c4c9a15144b3aeff95, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ventilation
+    second: {fileID: 2100000, guid: 8b17c93bf4da69a46aec2a5f44f413a7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wall
+    second: {fileID: 2100000, guid: a96ce25c9ad8de943b0dd5b74b669ee4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wall_collider
+    second: {fileID: 2100000, guid: a96ce25c9ad8de943b0dd5b74b669ee4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wall_frosted_glass_collider
+    second: {fileID: 2100000, guid: 53476ed316c8f3b40ad2bef803c93def, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wall_purple
+    second: {fileID: 2100000, guid: eea5a6d7750c61748b9edf7dcf91e330, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
