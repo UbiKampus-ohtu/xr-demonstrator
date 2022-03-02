@@ -20,7 +20,7 @@ public class Translate : MonoBehaviour {
     controller = targetTransform.GetComponent<CharacterController>();
     if (controller == null) {
       controller = targetTransform.gameObject.AddComponent<CharacterController>();
-      controller.center = new Vector3(0, 1f, 0);
+      controller.center = new Vector3(0, 1.08f, 0);
       controller.radius = colliderRadius;
     }
   }
