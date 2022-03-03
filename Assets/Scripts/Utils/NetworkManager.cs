@@ -195,6 +195,8 @@ public class NetworkManager : MonoBehaviour {
   }
 
   private void OnApplicationQuit() {
-    udpClient.Close();
+    if (udpClient != null) {
+      udpClient.Close();
+    }
   }
 }
