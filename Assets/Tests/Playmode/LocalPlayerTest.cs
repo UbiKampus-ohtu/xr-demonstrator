@@ -18,11 +18,11 @@ namespace Tests {
       GameObject player = GameObject.Find("LocalPlayer");
 
       Vector3 initialPosition = player.transform.position;
-      float originalDistanceToOrigo = player.transform.position.magnitude;
+      float originalDistanceToOrigo = initialPosition.magnitude;
       yield return new WaitForSeconds(0.5f);
       float distanceToOrigo = player.transform.position.magnitude;
       Assert.Less(distanceToOrigo, originalDistanceToOrigo);
-      Assert.Less(distanceToOrigo, 0.2f);
+      Assert.Less(distanceToOrigo, 1f);
     }
   }
 }
