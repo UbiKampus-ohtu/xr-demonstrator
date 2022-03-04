@@ -11,15 +11,18 @@ public class FootprintSpawner : MonoBehaviour {
   private Vector3 previousPosition = Vector3.zero;
 
   private void SpawnFoot() {
-    Vector3 footPosition = new Vector3(-0.1f, 0, 0);
+    Vector3 footPosition = new Vector3(-0.2f, 0, 0);
     Vector3 footScale = Vector3.one;
+    float footWidth = 0.3f;
+    float footHeight = footWidth;
     if (isRight) {
+      footWidth *= -1;
       footPosition.x *= -1;
       footScale.x *= -1;
     }
-    GameObject foot = Instantiate(footprintPrefab, transform.TransformPoint(footPosition), transform.rotation);
-    Destroy(foot, 30);
-    foot.transform.localScale = footScale;
+    Vector3 decalPosition = transform.TransformPoint(footPosition);
+    DecalManager.addDecal("Footprint", decalPosition, transform.rotation, footWidth, footHeight);
+
     isRight = !isRight;
     distance = 0f;
   }
@@ -37,7 +40,7 @@ public class FootprintSpawner : MonoBehaviour {
       if (distance > 0.5f) {
         SpawnFoot();
       }
-    } else if (isMoving) {
+    } else if (isMoving && distance > 0.15f) {
       SpawnFeet();
       isMoving = false;
     }
