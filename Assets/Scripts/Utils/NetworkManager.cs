@@ -4,23 +4,6 @@ using System.Net;
 using System.Net.Sockets;
 using UnityEngine;
 
-public class TransformToBytes {
-  public static byte [] get (Transform thisTransform) {
-    float [] transformComponents = {
-      thisTransform.position.x,
-      thisTransform.position.y,
-      thisTransform.position.z,
-      thisTransform.rotation.x,
-      thisTransform.rotation.y,
-      thisTransform.rotation.z,
-      thisTransform.rotation.w
-    };
-    byte [] result = new byte[7 * 4];
-    Buffer.BlockCopy(transformComponents, 0, result, 0, 7 * 4);
-    return result;
-  }
-}
-
 public class NetworkManager : MonoBehaviour {
   public string URI = "localhost";
   public int port = 9000;
