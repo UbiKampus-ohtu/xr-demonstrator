@@ -4,18 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ChangeText : MonoBehaviour {
-    public Text StatusText;
+  public Text StatusText;
 
-    private void OnEnable() {
-        EventManager.startListening("change text", changeText);
-    }
+  private void OnEnable() {
+    EventManager.startListening("change text", changeText);
+  }
 
-    private void OnDisable() {
-        EventManager.stopListening("change text", changeText);
-    }
+  private void OnDisable() {
+    EventManager.stopListening("change text", changeText);
+  }
 
-    private void changeText(string param) {
-        if (param.Equals("red")) {
+  private void changeText(string param) {
+    if (param.Equals("red")) {
 			StatusText.text = "Swarm";
 		} else if (param.Equals("yellow")) {
 			StatusText.text = "Horde";
@@ -24,7 +24,7 @@ public class ChangeText : MonoBehaviour {
 		} else if (param.Equals("blue")) {
 			StatusText.text = "Few";
 		} else {
-            StatusText.text = "None";
-        }
+      StatusText.text = "None";
     }
+  }
 }
