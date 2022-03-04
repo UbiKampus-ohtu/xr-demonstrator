@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DecalGenerator : MonoBehaviour {
   private int decals = 0;
-  private int maxDecals = 100;
+  private int maxDecals = 5000;
   private bool firstPass = true;
 
   private Mesh mesh;
