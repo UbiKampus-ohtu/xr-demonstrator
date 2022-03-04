@@ -6,78 +6,51 @@ using UnityEngine;
 public class Meter : MonoBehaviour {
 	private float timer;
 	private string eventId;
-	private Vector3 columnScale;
-	private Vector3 columnZchange;
-	private Transform columnTransform;
-	bool movement;
+	private bool movementInRoom;
+	private string status;
 
 	private void Start() {
-		ChangeMaterial changeMat = GetComponentInChildren<ChangeMaterial>();
-		columnTransform = transform.Find("MeterColumn");
   }
 
   private void OnEnable() {
-		columnZchange = new Vector3(0,0,0);
+		movementInRoom = false;
 		eventId = string.Format("{0} motionSensor", gameObject.name);
-    EventManager.startListening(eventId, prepareScaleChange);
+    EventManager.startListening(eventId, movementSensed);
   }
 
 	private void OnDisable() {
-		EventManager.stopListening(eventId, prepareScaleChange);
+		EventManager.stopListening(eventId, movementSensed);
 	}
 
 	private void Update() {
-    timer += Time.deltaTime;
+		timer += Time.deltaTime;
 
-    if (timer >= 10f) {
-			if (movement) {
-				growColumn();
-			} else {
-				shrinkColumn();
-			}
-      
-			statusChange(columnTransform.localScale.z);
+		if (timer % 5 <= 0.01f && movementInRoom) {
+			roomPopulationChange();
+			movementInRoom = false;
 			timer = 0;
-    }
+
+		} else if (timer >= 360 && !movementInRoom) {
+			print("timer " + timer);
+			movementInRoom = false;
+			roomPopulationChange();
+			timer = 0;
+		}
+
   }
   
-	private void prepareScaleChange(string param) {
-		if (columnZchange.z < 1f) {
-			columnZchange += new Vector3(0,0,0.01f);
-		}
-		movement = true;
-	} 
-
-	private void shrinkColumn() {
-		if (columnTransform.localScale.z > 0.1f) {
-			columnScale = columnTransform.localScale -= new Vector3(0, 0, 0.001f);
-		}
-  }
-
-	private void statusChange(float height) {
-		string status = "";
-		if (height >= 0.75f) {
-			status = "red";
-		} else if (height >= 0.5f) {
-			status = "yellow";
-		} else if (height >= 0.2f) {
-			status = "green";
-		} else if (height > 0.1f) {
-			status = "blue";
-		} else {
-			status = "grey";
-		}
-		EventManager.trigger("change material", status);
-		EventManager.trigger("change text", status);
+	private void movementSensed(string param) {
+		movementInRoom = true;
 	}
 
-	private void growColumn() {
-		if (columnZchange.z + columnScale.z < 1f) {
-			columnScale = columnTransform.localScale += columnZchange;
+	private void roomPopulationChange() {
+		if (movementInRoom) {
+			status = "on";
 		} else {
-			columnScale = columnTransform.localScale = new Vector3(columnTransform.localScale.x, columnTransform.localScale.y, 1f);
+			status = "off";
 		}
-		movement = false;
-		columnZchange = new Vector3(0,0,0);
-  }
+
+		EventManager.trigger("change material", status);
+		//EventManager.trigger("change text", status);
+	}
 }
