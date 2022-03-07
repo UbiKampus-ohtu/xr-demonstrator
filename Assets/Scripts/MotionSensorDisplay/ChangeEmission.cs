@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChangeMaterial : MonoBehaviour {
+public class ChangeEmission : MonoBehaviour {
 	private Color c = new Color(27f, 79f, 191f);
 
 	private void OnEnable() {

@@ -4,11 +4,13 @@ using UnityEngine;
 using System;
 
 public class Reservation : IComparable<Reservation> {
+	private string id;
 	private string name;
 	private DateTime dateStart;
 	private DateTime dateEnd;
 
-	public Reservation(string name, DateTime startDate, DateTime endDate) {
+	public Reservation(string id, string name, DateTime startDate, DateTime endDate) {
+		this.id = id;
 		this.name = name;
 		this.dateStart = startDate;
 		this.dateEnd = endDate;
@@ -20,6 +22,10 @@ public class Reservation : IComparable<Reservation> {
   void Update() {
   }
 
+	public string getId() {
+		return id;
+	}
+	
 	public DateTime getDateStart() {
 		return dateStart;
 	}

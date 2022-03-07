@@ -1,16 +1,12 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Meter : MonoBehaviour {
+public class MotionSensorManager : MonoBehaviour {
 	private float timer;
 	private string eventId;
 	private bool movementInRoom;
-	private string status;
-
-	private void Start() {
-  }
 
   private void OnEnable() {
 		movementInRoom = false;
@@ -45,12 +41,9 @@ public class Meter : MonoBehaviour {
 
 	private void roomPopulationChange() {
 		if (movementInRoom) {
-			status = "on";
+			EventManager.trigger("change material", "on");
 		} else {
-			status = "off";
+			EventManager.trigger("change material", "off");
 		}
-
-		EventManager.trigger("change material", status);
-		//EventManager.trigger("change text", status);
 	}
 }
