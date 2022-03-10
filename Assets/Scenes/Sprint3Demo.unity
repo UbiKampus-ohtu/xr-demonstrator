@@ -768,25 +768,13 @@ MonoBehaviour:
   roomName: 
   occupied: 0
   width: 3.5303211
-  depth: 1.7294579
-  curtains:
-  - wallIndex: 1
-    position: -0.697
-    width: 5.59
-    height: 3
-  - wallIndex: 3
-    position: 0.697
-    width: 5.59
-    height: 3
+  depth: 1.6522675
+  curtains: []
   doors:
   - wallIndex: 1
     position: 2.83
     width: 1.4
-    height: 2.1
-  - wallIndex: 3
-    position: -2.83
-    width: 1.4
-    height: 2.95
+    height: 2.05
 --- !u!1001 &1201644730
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -11,6 +11,8 @@ public class RoomEditor : Editor {
     EditorGUI.BeginChangeCheck();
     dimension = Handles.DoPositionHandle(dimension, transform.rotation);
     if (EditorGUI.EndChangeCheck()) {
+      Room room = target as Room;
+      Undo.RecordObject(room, "Update dimension");
       targetDimension = Vector3.Scale(transform.InverseTransformPoint(dimension), mask).magnitude;
     }
   }
