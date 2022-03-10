@@ -8,6 +8,8 @@ public struct WallElement {
   public float position;
   public float width;
   public float height;
+  public float activity;
+  public GameObject instance;
 }
 
 public class Room : MonoBehaviour {
@@ -25,10 +27,23 @@ public class Room : MonoBehaviour {
   private void Awake() {
     GameObject curtainPrefab = Resources.Load("Prefabs/Furniture/CurtainRoot") as GameObject;
     SpawnWallElements(curtainPrefab, curtains);
+    SetWallElementState(occupied, curtains);
+    SetWallElementState(occupied, doors);
+  }
+
+  private void SetWallElementState(bool state, List<WallElement> wallElements) {
+    foreach(WallElement wallElement in wallElements) {
+      Animator wallElementAnimator = wallElement.instance.GetComponentInChildren<Animator>();
+      if (wallElementAnimator == null) {
+        continue;
+      }
+      wallElementAnimator.SetBool("closed", occupied);
+    }
   }
 
   private void SpawnWallElements(GameObject wallElementPrefab, List<WallElement> wallElements) {
-    foreach(WallElement wallElement in wallElements) {
+    for (int i = 0; i < wallElements.Count; i++) {
+      WallElement wallElement = wallElements[i];
       GameObject thisWallElement = Instantiate(wallElementPrefab);
       thisWallElement.transform.parent = this.transform;
 
@@ -39,7 +54,8 @@ public class Room : MonoBehaviour {
       thisWallElement.transform.localPosition = rotation * new Vector3(-wallElement.position, 0, distance);
       thisWallElement.transform.localScale = new Vector3(wallElement.width, wallElement.height, 1);
 
-      Debug.Log(rotation.eulerAngles);
+      wallElement.instance = thisWallElement;
+      wallElements[i] = wallElement;
     }
   }
 
