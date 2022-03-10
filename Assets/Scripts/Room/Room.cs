@@ -22,6 +22,27 @@ public class Room : MonoBehaviour {
   public List<WallElement> curtains;
   public List<WallElement> doors;
 
+  private void Awake() {
+    GameObject curtainPrefab = Resources.Load("Prefabs/Furniture/CurtainRoot") as GameObject;
+    SpawnWallElements(curtainPrefab, curtains);
+  }
+
+  private void SpawnWallElements(GameObject wallElementPrefab, List<WallElement> wallElements) {
+    foreach(WallElement wallElement in wallElements) {
+      GameObject thisWallElement = Instantiate(wallElementPrefab);
+      thisWallElement.transform.parent = this.transform;
+
+      Quaternion rotation = Quaternion.Euler(0, 90f * wallElement.wallIndex + 90f, 0);
+      thisWallElement.transform.localRotation = rotation;
+
+      float distance = wallElement.wallIndex % 2 == 0 ? width : depth;
+      thisWallElement.transform.localPosition = rotation * new Vector3(-wallElement.position, 0, distance);
+      thisWallElement.transform.localScale = new Vector3(wallElement.width, wallElement.height, 1);
+
+      Debug.Log(rotation.eulerAngles);
+    }
+  }
+
   private void DrawWallElements(List<WallElement> wallElements, Color color) {
     Gizmos.color = color;
     foreach (WallElement wallElement in wallElements) {

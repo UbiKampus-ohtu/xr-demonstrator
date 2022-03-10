@@ -769,12 +769,12 @@ MonoBehaviour:
   occupied: 0
   width: 3.5303211
   depth: 1.6522675
-  curtains: []
-  doors:
+  curtains:
   - wallIndex: 1
-    position: 2.83
+    position: -2.47
     width: 1.4
-    height: 2.05
+    height: 3
+  doors: []
 --- !u!1001 &1201644730
 PrefabInstance:
   m_ObjectHideFlags: 0

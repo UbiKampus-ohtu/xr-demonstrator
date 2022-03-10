@@ -66,6 +66,10 @@ public class RoomEditor : Editor {
       EditorGUILayout.BeginHorizontal();
       GUILayout.FlexibleSpace();
       if (GUILayout.Button("Copy", GUILayout.Width(85))) {
+        wallElements.Add(wallElement);
+        return;
+      }
+      if (GUILayout.Button("Mirror", GUILayout.Width(85))) {
         wallElement.wallIndex = (int)((wallElement.wallIndex + 2) % 4);
         wallElement.position *= -1;
         wallElements.Add(wallElement);
