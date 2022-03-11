@@ -8,12 +8,10 @@ public struct WallElement {
   public float position;
   public float width;
   public float height;
-  public float activity;
   public GameObject instance;
 }
 
 public class Room : MonoBehaviour {
-  public string roomName;
   public bool occupied;
 
   [HideInInspector]
@@ -21,7 +19,9 @@ public class Room : MonoBehaviour {
   [HideInInspector]
   public float depth = 1;
 
+  [HideInInspector]
   public List<WallElement> curtains;
+  [HideInInspector]
   public List<WallElement> doors;
 
   private void Awake() {
@@ -29,6 +29,14 @@ public class Room : MonoBehaviour {
     SpawnWallElements(curtainPrefab, curtains);
     SetWallElementState(occupied, curtains);
     SetWallElementState(occupied, doors);
+    SpawnTriggerVolume();
+  }
+
+  private void SpawnTriggerVolume() {
+    BoxCollider triggerVolume = gameObject.AddComponent<BoxCollider>();
+    triggerVolume.center = new Vector3(0, 1.5f, 0);
+    triggerVolume.size = new Vector3(width * 2, 3f, depth * 2);
+    triggerVolume.isTrigger = true;
   }
 
   private void SetWallElementState(bool state, List<WallElement> wallElements) {
@@ -89,5 +97,48 @@ public class Room : MonoBehaviour {
 
     DrawWallElements(curtains, new Color(0, 0, 1, 0.5f));
     DrawWallElements(doors, new Color(1, 1, 1, 0.5f));
+  }
+
+  private bool hasActivity = false;
+  private float feetTimer = 0;
+  private float feetPeriod = 10;
+  public void SetFeetPerMin(float fpm) {
+    if (fpm < 1) {
+      hasActivity = false;
+      return;
+    }
+    hasActivity = true;
+    float feetPerSecond = fpm / 60;
+    feetPeriod = 1 / feetPerSecond;
+  }
+
+  public void MotionSensor() {
+    if (!hasActivity) {
+      feetPeriod = 1;
+    }
+    float feetPerSecond = 1 / feetPeriod;
+    float feetPerMin = feetPerSecond * 60;
+    SetFeetPerMin(feetPerMin + 60);
+  }
+
+  private void SpawnFootprint() {
+    if (!hasActivity) return;
+
+    feetTimer += Time.deltaTime;
+    feetPeriod += Time.deltaTime * 0.1f;
+    if (feetTimer < feetPeriod) return;
+
+    if (feetPeriod > 60) {
+      hasActivity =  false;
+    }
+
+    feetTimer = 0;
+    Vector3 deltaPosition = transform.rotation * new Vector3(Random.Range(-width + 0.3f, width - 0.3f), 0, Random.Range(-depth + 0.3f, depth - 0.3f));
+    Quaternion rotation = Quaternion.Euler(0, Random.Range(-180f, 180f), 0);
+    DecalManager.addDecal("FootprintSim", transform.position + deltaPosition, rotation, 0.3f, 0.3f);
+  }
+  
+  private void Update() {
+    SpawnFootprint();
   }
 }

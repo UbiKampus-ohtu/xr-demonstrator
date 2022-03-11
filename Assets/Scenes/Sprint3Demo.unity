@@ -733,7 +733,7 @@ GameObject:
   - component: {fileID: 1150707998}
   - component: {fileID: 1150707999}
   m_Layer: 0
-  m_Name: Octave
+  m_Name: Kotlin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -765,16 +765,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd5f04db5c38095468007096ad3529d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomName: 
   occupied: 0
-  width: 3.5303211
+  width: 3.5443983
   depth: 1.6522675
   curtains:
   - wallIndex: 1
-    position: -2.47
+    position: -2.84
+    width: 1.4
+    height: 3.17
+    instance: {fileID: 0}
+  - wallIndex: 1
+    position: -1.41
+    width: 1.45
+    height: 3.17
+    instance: {fileID: 0}
+  - wallIndex: 1
+    position: -0.01
+    width: 1.45
+    height: 3.17
+    instance: {fileID: 0}
+  - wallIndex: 1
+    position: 1.41
+    width: 1.45
+    height: 3.17
+    instance: {fileID: 0}
+  - wallIndex: 3
+    position: 2.84
     width: 1.4
     height: 3
+    instance: {fileID: 0}
+  - wallIndex: 3
+    position: 1.41
+    width: 1.45
+    height: 3
+    instance: {fileID: 0}
+  - wallIndex: 3
+    position: 0.01
+    width: 1.45
+    height: 3
+    instance: {fileID: 0}
+  - wallIndex: 3
+    position: -1.41
+    width: 1.45
+    height: 3
+    instance: {fileID: 0}
   doors: []
+  feetPeriod: 1e+9
 --- !u!1001 &1201644730
 PrefabInstance:
   m_ObjectHideFlags: 0

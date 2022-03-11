@@ -30,13 +30,12 @@ public class RoomEditor : Editor {
     UpdatePositionHandle(handleTransform, ref room.depth, Vector3.forward);
   }
 
-  private void DrawWallElementControls(List<WallElement> wallElements) {
+  private bool DrawWallElementControls(List<WallElement> wallElements) {
     Room room = target as Room;
 
     for (int index = 0; index < wallElements.Count; index++) {
-      WallElement wallElement = wallElements[index];
-
       EditorGUI.BeginChangeCheck();
+      WallElement wallElement = wallElements[index];
 
       EditorGUILayout.BeginHorizontal();
       EditorGUILayout.LabelField("  Wall Index");
@@ -61,58 +60,58 @@ public class RoomEditor : Editor {
 
       if (EditorGUI.EndChangeCheck()) {
         wallElements[index] = wallElement;
+        return true;
       }
 
       EditorGUILayout.BeginHorizontal();
       GUILayout.FlexibleSpace();
       if (GUILayout.Button("Copy", GUILayout.Width(85))) {
         wallElements.Add(wallElement);
-        return;
+        return true;
       }
       if (GUILayout.Button("Mirror", GUILayout.Width(85))) {
         wallElement.wallIndex = (int)((wallElement.wallIndex + 2) % 4);
         wallElement.position *= -1;
         wallElements.Add(wallElement);
-        return;
+        return true;
       }
       if (GUILayout.Button("Remove", GUILayout.Width(85))) {
         wallElements.RemoveAt(index);
-        return;
+        return true;
       }
       EditorGUILayout.EndHorizontal();
     }
+    return false;
   }
 
   public override void OnInspectorGUI() {
     Room room = target as Room;
 
-    EditorGUILayout.BeginHorizontal();
-    EditorGUILayout.LabelField("Room name");
-    room.name = EditorGUILayout.TextField(room.name);
-    EditorGUILayout.EndHorizontal();
-
-    EditorGUILayout.BeginHorizontal();
-    EditorGUILayout.LabelField("Occupied");
-    room.occupied = EditorGUILayout.Toggle(room.occupied);
-    EditorGUILayout.EndHorizontal();
-
-    EditorGUILayout.Vector2Field("Dimensions", new Vector3(room.width, room.depth));
+    base.OnInspectorGUI();
 
     EditorGUILayout.LabelField("Curtains", EditorStyles.boldLabel);
     EditorGUI.DrawRect(EditorGUILayout.GetControlRect(false, 1), new Color ( 0.5f,0.5f,0.5f, 1 ) );
-    DrawWallElementControls(room.curtains);
-    
+    bool updatedCurtains = DrawWallElementControls(room.curtains);
+
     if (GUILayout.Button("Add curtain")) {
       room.AddWallElement(room.curtains, 2f, 3f);
     }
 
     EditorGUILayout.LabelField("Doors", EditorStyles.boldLabel);
     EditorGUI.DrawRect(EditorGUILayout.GetControlRect(false, 1), new Color ( 0.5f,0.5f,0.5f, 1 ) );
-    DrawWallElementControls(room.doors);
+    bool updatedDoors = DrawWallElementControls(room.doors);
 
 
     if (GUILayout.Button("Add door")) {
       room.AddWallElement(room.doors, 1.4f, 2.1f);
+    }
+
+    if (updatedCurtains || updatedDoors) {
+      EditorUtility.SetDirty(room);
+    }
+
+    if (GUILayout.Button("Trigger Motionsensor")) {
+      room.MotionSensor();
     }
   }
 }
