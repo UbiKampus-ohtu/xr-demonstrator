@@ -1,6 +1,6 @@
 # XR demonstrator for UbiKampus
 
-![GitHub Actions](https://github.com/makeri89/ohtu-miniprojekti/workflows/CI/badge.svg)
+![GitHub Actions](https://github.com/Ubikampus-ohtu/xr-demonstrator/workflows/CI/badge.svg)
 
 ## Description 
 
