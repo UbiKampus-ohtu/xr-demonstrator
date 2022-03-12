@@ -4,7 +4,7 @@ using System.Net;
 using System.Net.Sockets;
 using UnityEngine;
 
-public class NetworkManager : MonoBehaviour {
+public class MQTTManager : MonoBehaviour {
   public string URI = "localhost";
   public int port = 9000;
 
@@ -14,19 +14,19 @@ public class NetworkManager : MonoBehaviour {
 
   private Dictionary<string, Action<object>> eventDictionary;
   
-  private static NetworkManager networkManager;
-  public static NetworkManager instance {
+  private static MQTTManager mqttManager;
+  public static MQTTManager instance {
     get {
-      if (!networkManager) {
-        networkManager = FindObjectOfType (typeof(NetworkManager)) as NetworkManager;
-        if (!networkManager) {
+      if (!mqttManager) {
+        mqttManager = FindObjectOfType (typeof(MQTTManager)) as MQTTManager;
+        if (!mqttManager) {
           Debug.Log("sfdljasklfjalsf");
         } else {
-          networkManager.init();
-          networkManager.connect();
+          mqttManager.init();
+          mqttManager.connect();
         }
       }
-      return networkManager;
+      return mqttManager;
     }
   }
 
@@ -162,7 +162,7 @@ public class NetworkManager : MonoBehaviour {
   }
 
   public static void stopListening(string eventName, Action<object> listener) {
-    if (networkManager == null) return;
+    if (mqttManager == null) return;
     Action<object> thisEvent = null;
     if (instance.eventDictionary.TryGetValue(eventName, out thisEvent)) {
       thisEvent -= listener;

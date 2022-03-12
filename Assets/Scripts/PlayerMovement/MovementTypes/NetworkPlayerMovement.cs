@@ -9,7 +9,7 @@ public class NetworkPlayerMovement : PlayerMovement {
   public override void Start() {
     base.Start();
     movement.gravity = false;
-    NetworkManager.startListening("player id_here 0 transform", updateTransform);
+    MQTTManager.startListening("player id_here 0 transform", updateTransform);
     //NetworkManager.startListening("player id_here 1 transform", updateRightHand);
     //NetworkManager.startListening("player id_here 2 transform", updateHead);
     //NetworkManager.startListening("player id_here 3 transform", updateLeftHand);

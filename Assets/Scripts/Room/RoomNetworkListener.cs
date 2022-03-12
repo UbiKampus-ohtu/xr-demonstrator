@@ -14,7 +14,7 @@ public class RoomNetworkListener : MonoBehaviour {
 
   private void OnEnable() {
     roomName = gameObject.name;
-    NetworkManager.startListening(roomName, ProcessPayload);
+    MQTTManager.startListening(roomName, ProcessPayload);
   }
 
   private void ProcessPayload(object payload) {
