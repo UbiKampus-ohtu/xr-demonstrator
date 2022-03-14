@@ -111,7 +111,7 @@ public class RoomEditor : Editor {
     }
 
     if (GUILayout.Button("Trigger Motionsensor")) {
-      room.MotionSensor();
+      room.MotionSensor("");
     }
   }
 }

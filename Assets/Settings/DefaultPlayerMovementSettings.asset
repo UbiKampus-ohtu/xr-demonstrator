@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DefaultPlayerMovementSettings
   m_EditorClassIdentifier: 
   prefabName: 
-  walkingSpeed: 1.1
+  walkingSpeed: 2.05
   runSpeed: 2.374
   mouseSensitivity: 0.05
   playerEyelineHeight: 1.65

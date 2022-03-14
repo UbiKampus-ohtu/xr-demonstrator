@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 [System.Serializable]
 public struct WallElement {
@@ -11,7 +12,7 @@ public struct WallElement {
   public GameObject instance;
 }
 
-public class Room : MonoBehaviour {
+public class Room : NetworkBehaviour {
   public bool occupied;
 
   [HideInInspector]
@@ -30,6 +31,15 @@ public class Room : MonoBehaviour {
     SetWallElementState(occupied, curtains);
     SetWallElementState(occupied, doors);
     SpawnTriggerVolume();
+
+    string eventId = string.Format("{0} motionSensor", gameObject.name);
+    EventManager.startListening(eventId, MotionSensor);
+  }
+
+  public override void OnStartServer() {
+    gameObject.AddComponent<RoomNetworkListener>();
+    SetWallElementState(occupied, curtains);
+    SetWallElementState(occupied, doors);
   }
 
   private void SpawnTriggerVolume() {
@@ -112,7 +122,7 @@ public class Room : MonoBehaviour {
     feetPeriod = 1 / feetPerSecond;
   }
 
-  public void MotionSensor() {
+  public void MotionSensor(string param) {
     if (!hasActivity) {
       feetPeriod = 1;
     }
@@ -135,7 +145,7 @@ public class Room : MonoBehaviour {
     feetTimer = 0;
     Vector3 deltaPosition = transform.rotation * new Vector3(Random.Range(-width + 0.3f, width - 0.3f), 0, Random.Range(-depth + 0.3f, depth - 0.3f));
     Quaternion rotation = Quaternion.Euler(0, Random.Range(-180f, 180f), 0);
-    DecalManager.addDecal("FootprintSim", transform.position + deltaPosition, rotation, 0.3f, 0.3f);
+    DecalManager.addDecal("FootprintSim", transform.position + deltaPosition, rotation, 0.25f, 0.25f);
   }
   
   private void Update() {

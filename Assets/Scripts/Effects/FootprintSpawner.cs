@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FootprintSpawner : MonoBehaviour {
-  public GameObject footprintPrefab;
 
   private bool isMoving = false;
   private bool isRight = false;
@@ -13,7 +12,7 @@ public class FootprintSpawner : MonoBehaviour {
   private void SpawnFoot() {
     Vector3 footPosition = new Vector3(-0.2f, 0, 0);
     Vector3 footScale = Vector3.one;
-    float footWidth = 0.3f;
+    float footWidth = 0.25f;
     float footHeight = footWidth;
     if (isRight) {
       footWidth *= -1;
