@@ -40,6 +40,7 @@ public class Movement : MonoBehaviour {
   }
 
   public void move(Vector2 movementInput) {
+    if (viewport == null) return;
     Quaternion referenceRotation = viewport.rotation * Quaternion.Euler(-viewport.rotation.eulerAngles.x, 0, -viewport.rotation.eulerAngles.z);
     playerTranslation.move(movementInput * settings.walkingSpeed, referenceRotation);
   }
