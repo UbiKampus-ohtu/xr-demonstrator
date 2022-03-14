@@ -6,11 +6,21 @@ using UnityEngine;
 public class MotionSensorManager : MonoBehaviour {
 	private float timer;
 	private string eventId;
-	private bool movementInRoom;
+  private bool hasMovement = false;
+	private bool movementInRoom = false;
+  private float timeSinceLastMovement = 0;
+  private ChangeEmission emissionChanger;
+  public bool independent;
+
+  private void Awake() {
+    emissionChanger = GetComponentInChildren<ChangeEmission>();
+  }
 
   private void OnEnable() {
+    string sensorName = transform.parent != null && !independent ? transform.parent.name : transform.name;
 		movementInRoom = false;
-		eventId = string.Format("{0} motionSensor", gameObject.name);
+		eventId = string.Format("{0} motionSensor", sensorName);
+    transform.name = eventId;
     EventManager.startListening(eventId, movementSensed);
   }
 
@@ -19,31 +29,35 @@ public class MotionSensorManager : MonoBehaviour {
 	}
 
 	private void Update() {
+    if (!hasMovement) return;
+
 		timer += Time.deltaTime;
+    if (timer > 1) {
+      roomPopulationChange();
+      movementInRoom = false;
+      timer = 0;
+    }
 
-		if (timer % 5 <= 0.01f && movementInRoom) {
-			roomPopulationChange();
-			movementInRoom = false;
-			timer = 0;
-
-		} else if (timer >= 360 && !movementInRoom) {
-			print("timer " + timer);
-			movementInRoom = false;
-			roomPopulationChange();
-			timer = 0;
-		}
-
+    if (timeSinceLastMovement > 360f) {
+      hasMovement = false;
+    }
   }
   
 	private void movementSensed(string param) {
+    if (emissionChanger == null) return;
 		movementInRoom = true;
+    hasMovement = true;
+    timer = 0;
 	}
 
 	private void roomPopulationChange() {
+    if (emissionChanger == null) return;
 		if (movementInRoom) {
-			EventManager.trigger("change material", "on");
+      timeSinceLastMovement = 0;
+      emissionChanger.EmissionUpdate(true);
 		} else {
-			EventManager.trigger("change material", "off");
+      timeSinceLastMovement += timer;
+			emissionChanger.EmissionUpdate(false);
 		}
 	}
 }
