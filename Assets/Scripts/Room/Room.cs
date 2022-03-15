@@ -32,8 +32,8 @@ public class Room : NetworkBehaviour {
     SetWallElementState(occupied, doors);
     SpawnTriggerVolume();
 
-    string eventId = string.Format("{0} motionSensor", gameObject.name);
-    EventManager.startListening(eventId, MotionSensor);
+    EventManager.startListening(string.Format("{0} reserved", gameObject.name), Reservation);
+    EventManager.startListening(string.Format("{0} motionSensor", gameObject.name), MotionSensor);
   }
 
   public override void OnStartServer() {
@@ -55,7 +55,7 @@ public class Room : NetworkBehaviour {
       if (wallElementAnimator == null) {
         continue;
       }
-      wallElementAnimator.SetBool("closed", occupied);
+      wallElementAnimator.SetBool("closed", state);
     }
   }
 
@@ -131,6 +131,14 @@ public class Room : NetworkBehaviour {
     SetFeetPerMin(feetPerMin + 60);
   }
 
+  private bool occupiedStateChanged = false;
+  public void Reservation(string param) {
+    bool state = param == "1" ? true : false;
+    if (occupied == state) return;
+    occupied = state;
+    occupiedStateChanged = true;
+  }
+
   private void SpawnFootprint() {
     if (!hasActivity) return;
 
@@ -150,5 +158,10 @@ public class Room : NetworkBehaviour {
   
   private void Update() {
     SpawnFootprint();
+    if (occupiedStateChanged) {
+      occupiedStateChanged = false;
+      SetWallElementState(occupied, curtains);
+      SetWallElementState(occupied, doors);
+    }
   }
 }

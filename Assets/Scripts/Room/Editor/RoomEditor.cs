@@ -113,5 +113,8 @@ public class RoomEditor : Editor {
     if (GUILayout.Button("Trigger Motionsensor")) {
       room.MotionSensor("");
     }
+    if (GUILayout.Button("Trigger Reservation")) {
+      room.Reservation(room.occupied ? "0" : "1");
+    }
   }
 }
