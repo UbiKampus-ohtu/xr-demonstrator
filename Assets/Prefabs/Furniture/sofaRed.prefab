@@ -167,6 +167,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2321757583558844499}
+  - component: {fileID: 3557009046718226926}
   m_Layer: 0
   m_Name: sofaRed
   m_TagString: Untagged
@@ -196,6 +197,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3557009046718226926
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3130945757858265833}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.8939686, y: 1.2876633, z: 0.71676254}
+  m_Center: {x: 0.0044255257, y: 0.63949746, z: 0.24783301}
 --- !u!1 &3225730761853899917
 GameObject:
   m_ObjectHideFlags: 0

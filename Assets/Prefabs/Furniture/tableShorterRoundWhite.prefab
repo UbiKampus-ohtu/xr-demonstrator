@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 670138614984293161}
+  - component: {fileID: 4658619467569744421}
   m_Layer: 0
   m_Name: tableShorterRoundWhite
   m_TagString: Untagged
@@ -31,6 +32,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &4658619467569744421
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5251697430967520723}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.48045656
+  m_Height: 0.96689844
+  m_Direction: 1
+  m_Center: {x: 0.010495454, y: 0.46936053, z: -0.0119615495}
 --- !u!1001 &6965165674066000348
 PrefabInstance:
   m_ObjectHideFlags: 0

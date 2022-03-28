@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1167472523853423503}
+  - component: {fileID: 5670086546748283204}
   m_Layer: 0
   m_Name: armchairRed
   m_TagString: Untagged
@@ -31,6 +32,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5670086546748283204
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6991816315999763658}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1002145, y: 1.2505355, z: 0.937366}
+  m_Center: {x: 0, y: 0.61381316, z: -0.031316996}
 --- !u!1001 &2262165548002792072
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46,7 +60,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 499adf622d1c214269ee983bfb43047b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.95
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 499adf622d1c214269ee983bfb43047b,
         type: 3}
@@ -56,7 +70,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 499adf622d1c214269ee983bfb43047b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.72
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 499adf622d1c214269ee983bfb43047b,
         type: 3}
