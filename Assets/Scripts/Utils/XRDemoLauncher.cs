@@ -23,7 +23,25 @@ namespace Mirror {
     private void Awake() {
       manager = GetComponent<NetworkManager>();
 
+      readCLIArguments();
+
       StartCoroutine(init());
+    }
+
+    private void readCLIArguments() {
+      string [] args = System.Environment.GetCommandLineArgs();
+      foreach (string argument in args) {
+        if (argument.Contains("-client")) {
+          networkRole = NetworkRoleSelector.Client;
+          break;
+        } else if (argument.Contains("-listeningServer")) {
+          networkRole = NetworkRoleSelector.ListeningServer;
+          break;
+        } else if (argument.Contains("-dedicatedServer")) {
+          networkRole = NetworkRoleSelector.Host;
+          break;
+        }
+      }
     }
 
     IEnumerator init() {
