@@ -13,6 +13,11 @@ public class RoomNetworkListener : MonoBehaviour {
   private string roomName;
 
   private void OnEnable() {
+    GameObject world = GameObject.Find("/World");
+    Mirror.XRDemoLauncher demoLauncher = world.GetComponent<Mirror.XRDemoLauncher>();
+    if (demoLauncher.networkRole == Mirror.XRDemoLauncher.NetworkRoleSelector.Client) return;
+
+    Debug.Log("listening for mqtt");
     roomName = gameObject.name;
     MQTTManager.startListening(roomName, ProcessPayload);
   }
