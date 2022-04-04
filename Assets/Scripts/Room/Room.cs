@@ -13,7 +13,11 @@ public struct WallElement {
 }
 
 public class Room : NetworkBehaviour {
+  [SyncVar(hook = nameof(OccupiedSyncHook))]
   public bool occupied;
+
+  [SyncVar(hook = nameof(FeetPeriodSyncHook))]
+  private float feetPeriod = 10;
 
   [HideInInspector]
   public float width = 1;
@@ -25,21 +29,40 @@ public class Room : NetworkBehaviour {
   [HideInInspector]
   public List<WallElement> doors;
 
+  public string roomName;
+
+  private bool asdfaf = false;
+
+  private void OccupiedSyncHook(bool oldState, bool newState) {
+    occupied = newState;
+    occupiedStateChanged = true;
+    EventManager.trigger(string.Format("{0} reserved", roomName), occupied ? "1" : "0");
+  }
+
+  private void FeetPeriodSyncHook(float oldFeetPeriod, float newFeetPeriod) {
+    if (oldFeetPeriod <= newFeetPeriod) return;
+    hasActivity = true;
+    feetPeriod = newFeetPeriod;
+    EventManager.trigger(string.Format("{0} motionSensor", roomName), "");
+  }
+
   private void Awake() {
     GameObject curtainPrefab = Resources.Load("Prefabs/Furniture/CurtainRoot") as GameObject;
     SpawnWallElements(curtainPrefab, curtains);
     SetWallElementState(occupied, curtains);
     SetWallElementState(occupied, doors);
     SpawnTriggerVolume();
-
-    EventManager.startListening(string.Format("{0} reserved", gameObject.name), Reservation);
-    EventManager.startListening(string.Format("{0} motionSensor", gameObject.name), MotionSensor);
+    roomName = gameObject.name;
   }
 
   public override void OnStartServer() {
+    base.OnStartServer();
     gameObject.AddComponent<RoomNetworkListener>();
     SetWallElementState(occupied, curtains);
     SetWallElementState(occupied, doors);
+    EventManager.startListening(string.Format("server {0} reserved", gameObject.name), Reservation);
+    EventManager.startListening(string.Format("server {0} motionSensor", gameObject.name), MotionSensor);
+    asdfaf = true;
   }
 
   private void SpawnTriggerVolume() {
@@ -111,7 +134,7 @@ public class Room : NetworkBehaviour {
 
   private bool hasActivity = false;
   private float feetTimer = 0;
-  private float feetPeriod = 10;
+  
   public void SetFeetPerMin(float fpm) {
     if (fpm < 1) {
       hasActivity = false;
@@ -119,7 +142,7 @@ public class Room : NetworkBehaviour {
     }
     hasActivity = true;
     float feetPerSecond = fpm / 60;
-    feetPeriod = 1 / feetPerSecond;
+    FeetPeriodSyncHook(feetPeriod, 1 / feetPerSecond);
   }
 
   public void MotionSensor(string param) {
@@ -131,12 +154,11 @@ public class Room : NetworkBehaviour {
     SetFeetPerMin(feetPerMin + 60);
   }
 
-  private bool occupiedStateChanged = false;
+  private bool occupiedStateChanged = true;
   public void Reservation(string param) {
     bool state = param == "1" ? true : false;
     if (occupied == state) return;
-    occupied = state;
-    occupiedStateChanged = true;
+    OccupiedSyncHook(occupied, state);
   }
 
   private void SpawnFootprint() {
@@ -157,6 +179,7 @@ public class Room : NetworkBehaviour {
   }
   
   private void Update() {
+    if (asdfaf) return;
     SpawnFootprint();
     if (occupiedStateChanged) {
       occupiedStateChanged = false;

@@ -30,7 +30,6 @@ public class MotionSensorManager : MonoBehaviour {
 
 	private void Update() {
     if (!hasMovement) return;
-
 		timer += Time.deltaTime;
     if (timer > 1) {
       roomPopulationChange();
@@ -47,7 +46,7 @@ public class MotionSensorManager : MonoBehaviour {
     if (emissionChanger == null) return;
 		movementInRoom = true;
     hasMovement = true;
-    timer = 0;
+    timer = 2;
 	}
 
 	private void roomPopulationChange() {

@@ -138,7 +138,7 @@ public class MQTTManager : MonoBehaviour {
 
     udpClient.BeginReceive(new AsyncCallback(onMessage), udpClient);
 
-    Debug.LogFormat("Received {0} bytes", data.Length);
+    //Debug.LogFormat("Received {0} bytes", data.Length);
 
     if (data.Length == 0) {
       return;

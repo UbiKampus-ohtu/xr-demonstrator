@@ -28,7 +28,7 @@ public class RoomNetworkListener : MonoBehaviour {
       return;
     }
 
-    string eventId = String.Format("{0} {1}", roomName, roomPayload.type);
+    string eventId = String.Format("server {0} {1}", roomName, roomPayload.type);
     if (roomPayload.type.Equals("motionSensor")) {
       EventManager.trigger(eventId, "");
     } else if (roomPayload.type.Equals("temperature")) {
