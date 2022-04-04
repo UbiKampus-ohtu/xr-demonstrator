@@ -7,6 +7,7 @@ public class PlayerMovement : NetworkBehaviour {
   public PlayerSettings settings;
   private XRInputs xrInputs;
   private bool xrEnabled = false;
+  public bool testMode = false;
 
   private MovementActions movementActions;
 
@@ -39,7 +40,7 @@ public class PlayerMovement : NetworkBehaviour {
   }
 
   private void Update() {
-    if (!isLocalPlayer) return;
+    if (!isLocalPlayer || testMode) return;
 
     Vector2 movementInput = movementActions.Player.move.ReadValue<Vector2>();
     Vector2 rotationInput = movementActions.Player.look.ReadValue<Vector2>();
