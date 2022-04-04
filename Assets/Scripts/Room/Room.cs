@@ -16,8 +16,8 @@ public class Room : NetworkBehaviour {
   [SyncVar(hook = nameof(OccupiedSyncHook))]
   public bool occupied;
 
-  [SyncVar(hook = nameof(FeetPeriodSyncHook))]
-  private float feetPeriod = 10;
+  [SyncVar(hook = nameof(MotionSyncHook))]
+  private int motionCounter = 0;
 
   [HideInInspector]
   public float width = 1;
@@ -31,18 +31,26 @@ public class Room : NetworkBehaviour {
 
   public string roomName;
 
-  private bool asdfaf = false;
-
   private void OccupiedSyncHook(bool oldState, bool newState) {
     occupied = newState;
     occupiedStateChanged = true;
     EventManager.trigger(string.Format("{0} reserved", roomName), occupied ? "1" : "0");
   }
+  
+  private float feetPeriod = 10;
+  private void MotionSyncHook(int oldValue, int newValue) {
+    if (newValue <= oldValue) return;
 
-  private void FeetPeriodSyncHook(float oldFeetPeriod, float newFeetPeriod) {
-    if (oldFeetPeriod <= newFeetPeriod) return;
-    hasActivity = true;
-    feetPeriod = newFeetPeriod;
+    motionCounter = newValue;
+
+    if (!hasActivity) {
+      feetPeriod = 1;
+    }
+
+    float feetPerSecond = 1 / feetPeriod;
+    float feetPerMin = feetPerSecond * 60;
+    SetFeetPerMin(feetPerMin + 60);
+
     EventManager.trigger(string.Format("{0} motionSensor", roomName), "");
   }
 
@@ -62,7 +70,6 @@ public class Room : NetworkBehaviour {
     SetWallElementState(occupied, doors);
     EventManager.startListening(string.Format("server {0} reserved", gameObject.name), Reservation);
     EventManager.startListening(string.Format("server {0} motionSensor", gameObject.name), MotionSensor);
-    asdfaf = true;
   }
 
   private void SpawnTriggerVolume() {
@@ -142,16 +149,11 @@ public class Room : NetworkBehaviour {
     }
     hasActivity = true;
     float feetPerSecond = fpm / 60;
-    FeetPeriodSyncHook(feetPeriod, 1 / feetPerSecond);
+    feetPeriod = 1 / feetPerSecond;
   }
 
   public void MotionSensor(string param) {
-    if (!hasActivity) {
-      feetPeriod = 1;
-    }
-    float feetPerSecond = 1 / feetPeriod;
-    float feetPerMin = feetPerSecond * 60;
-    SetFeetPerMin(feetPerMin + 60);
+    MotionSyncHook(motionCounter, motionCounter + 1);
   }
 
   private bool occupiedStateChanged = true;
@@ -179,7 +181,6 @@ public class Room : NetworkBehaviour {
   }
   
   private void Update() {
-    if (asdfaf) return;
     SpawnFootprint();
     if (occupiedStateChanged) {
       occupiedStateChanged = false;
