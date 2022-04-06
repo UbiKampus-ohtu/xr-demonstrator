@@ -8,6 +8,9 @@ TagManager:
   - Interaction
   - Pickup
   - Floor
+  - Label
+  - BillboardLabel
+  - MotionSensor
   layers:
   - Default
   - TransparentFX

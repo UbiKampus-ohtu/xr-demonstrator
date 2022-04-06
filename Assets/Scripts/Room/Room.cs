@@ -61,6 +61,9 @@ public class Room : NetworkBehaviour {
     SetWallElementState(occupied, doors);
     SpawnTriggerVolume();
     roomName = gameObject.name;
+    gameObject.AddComponent<RoomLabelBillboardSpawner>();
+    gameObject.AddComponent<RoomMotionSensorSpawner>();
+    gameObject.AddComponent<RoomWindowLabel>();
   }
 
   public override void OnStartServer() {

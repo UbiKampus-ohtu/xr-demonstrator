@@ -7,7 +7,7 @@ public class ChangeEmission : MonoBehaviour {
   private Material emissiveMaterial;
   private float emission = 0f;
   private float minEmission = 0.002f;
-  private float maxEmission = 0.04f;
+  private float maxEmission = 0.2f;
   private int steps = 60;
   private float emissionStep;
 

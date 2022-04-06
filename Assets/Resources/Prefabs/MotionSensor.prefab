@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3695080566532736681
 Transform:
   m_ObjectHideFlags: 0
@@ -55,6 +55,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -79,6 +80,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &3695080567070429937
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,8 +92,8 @@ GameObject:
   - component: {fileID: 3695080567070429938}
   - component: {fileID: 2429204948579801239}
   m_Layer: 0
-  m_Name: MotionSensorDisplay
-  m_TagString: Untagged
+  m_Name: MotionSensor
+  m_TagString: MotionSensor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,6 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11dd66ce628335b00ae067e44af81f30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  independent: 0
 --- !u!1 &3695080567644261554
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,10 +183,11 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dccbc841f6308cb0db1d58de34a80a8b, type: 2}
+  - {fileID: 2100000, guid: 017577f9a42d6ec4aa3cbe2e143db2c4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -204,6 +208,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &7913756448767718129
 MonoBehaviour:
   m_ObjectHideFlags: 0
