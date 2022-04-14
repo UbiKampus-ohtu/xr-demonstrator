@@ -411,7 +411,7 @@ MonoBehaviour:
   sceneId: 0
   serverOnly: 0
   visible: 0
-  m_AssetId: 
+  m_AssetId: 6d47ef6b75a93404dbdbf024db8d7a76
   hasSpawned: 0
 --- !u!1 &2730724397088590321
 GameObject:
@@ -1831,7 +1831,7 @@ MonoBehaviour:
   sceneId: 0
   serverOnly: 0
   visible: 0
-  m_AssetId: 
+  m_AssetId: 6d47ef6b75a93404dbdbf024db8d7a76
   hasSpawned: 0
 --- !u!1 &2730724397560082545
 GameObject:
@@ -1922,7 +1922,7 @@ MonoBehaviour:
   sceneId: 0
   serverOnly: 0
   visible: 0
-  m_AssetId: 
+  m_AssetId: 6d47ef6b75a93404dbdbf024db8d7a76
   hasSpawned: 0
 --- !u!1 &2730724397566599573
 GameObject:
@@ -2161,7 +2161,7 @@ MonoBehaviour:
   sceneId: 0
   serverOnly: 0
   visible: 0
-  m_AssetId: 
+  m_AssetId: 6d47ef6b75a93404dbdbf024db8d7a76
   hasSpawned: 0
 --- !u!1 &2730724397610092567
 GameObject:
@@ -2243,7 +2243,7 @@ MonoBehaviour:
   sceneId: 0
   serverOnly: 0
   visible: 0
-  m_AssetId: 
+  m_AssetId: 6d47ef6b75a93404dbdbf024db8d7a76
   hasSpawned: 0
 --- !u!1 &2730724397618683855
 GameObject:
@@ -3539,7 +3539,7 @@ MonoBehaviour:
   sceneId: 0
   serverOnly: 0
   visible: 0
-  m_AssetId: 
+  m_AssetId: 6d47ef6b75a93404dbdbf024db8d7a76
   hasSpawned: 0
 --- !u!1 &2730724397865493855
 GameObject:
@@ -4482,7 +4482,7 @@ MonoBehaviour:
   sceneId: 0
   serverOnly: 0
   visible: 0
-  m_AssetId: 
+  m_AssetId: 6d47ef6b75a93404dbdbf024db8d7a76
   hasSpawned: 0
 --- !u!1 &2730724398086290655
 GameObject:
@@ -4564,7 +4564,7 @@ MonoBehaviour:
   sceneId: 0
   serverOnly: 0
   visible: 0
-  m_AssetId: 
+  m_AssetId: 6d47ef6b75a93404dbdbf024db8d7a76
   hasSpawned: 0
 --- !u!1 &2730724398101376916
 GameObject:
@@ -5886,7 +5886,7 @@ MonoBehaviour:
   sceneId: 0
   serverOnly: 0
   visible: 0
-  m_AssetId: 
+  m_AssetId: 6d47ef6b75a93404dbdbf024db8d7a76
   hasSpawned: 0
 --- !u!1 &2730724398298176413
 GameObject:
@@ -6664,7 +6664,7 @@ MonoBehaviour:
   sceneId: 0
   serverOnly: 0
   visible: 0
-  m_AssetId: 
+  m_AssetId: 6d47ef6b75a93404dbdbf024db8d7a76
   hasSpawned: 0
 --- !u!1 &2730724398348749925
 GameObject:
@@ -6747,7 +6747,7 @@ MonoBehaviour:
   sceneId: 0
   serverOnly: 0
   visible: 0
-  m_AssetId: 
+  m_AssetId: 6d47ef6b75a93404dbdbf024db8d7a76
   hasSpawned: 0
 --- !u!1 &2730724398356565758
 GameObject:
@@ -6839,7 +6839,7 @@ MonoBehaviour:
   sceneId: 0
   serverOnly: 0
   visible: 0
-  m_AssetId: 
+  m_AssetId: 6d47ef6b75a93404dbdbf024db8d7a76
   hasSpawned: 0
 --- !u!1 &2730724398394287959
 GameObject:
@@ -8091,7 +8091,7 @@ MonoBehaviour:
   sceneId: 0
   serverOnly: 0
   visible: 0
-  m_AssetId: 
+  m_AssetId: 6d47ef6b75a93404dbdbf024db8d7a76
   hasSpawned: 0
 --- !u!1 &2730724398747602268
 GameObject:
@@ -8460,7 +8460,7 @@ MonoBehaviour:
   sceneId: 0
   serverOnly: 0
   visible: 0
-  m_AssetId: 
+  m_AssetId: 6d47ef6b75a93404dbdbf024db8d7a76
   hasSpawned: 0
 --- !u!1 &2730724398775504076
 GameObject:
@@ -8623,7 +8623,7 @@ MonoBehaviour:
   sceneId: 0
   serverOnly: 0
   visible: 0
-  m_AssetId: 
+  m_AssetId: 6d47ef6b75a93404dbdbf024db8d7a76
   hasSpawned: 0
 --- !u!1 &2730724398781915943
 GameObject:
@@ -9169,7 +9169,7 @@ MonoBehaviour:
   sceneId: 0
   serverOnly: 0
   visible: 0
-  m_AssetId: 
+  m_AssetId: 6d47ef6b75a93404dbdbf024db8d7a76
   hasSpawned: 0
 --- !u!114 &2730724398828936459
 MonoBehaviour:
@@ -10375,7 +10375,7 @@ MonoBehaviour:
   sceneId: 0
   serverOnly: 0
   visible: 0
-  m_AssetId: 
+  m_AssetId: 6d47ef6b75a93404dbdbf024db8d7a76
   hasSpawned: 0
 --- !u!1 &2730724399125864717
 GameObject:
@@ -10484,7 +10484,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4801180304743008099}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 13.981636, y: 23.763287, z: 37.83807}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
