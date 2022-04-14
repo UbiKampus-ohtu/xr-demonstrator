@@ -88,7 +88,7 @@ public class Room : NetworkBehaviour {
     foreach(WallElement wallElement in wallElements) {
       Animator wallElementAnimator = wallElement.instance.GetComponentInChildren<Animator>();
       if (wallElementAnimator == null) {
-        //wallElement.instance.SetActive(state);
+        wallElement.instance.SetActive(state);
         continue;
       }
       wallElementAnimator.SetBool("closed", state);

@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 3695080567070429938}
   - component: {fileID: 2429204948579801239}
   m_Layer: 0
-  m_Name: MotionSensor
+  m_Name: RoomStatusIcon
   m_TagString: MotionSensor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

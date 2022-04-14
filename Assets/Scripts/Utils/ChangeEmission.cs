@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ChangeEmission : MonoBehaviour {
+  private Color defaultColor = new Color(27f, 79f, 191f);
 	private Color color = new Color(27f, 79f, 191f);
   private Material emissiveMaterial;
   private float emission = 0f;
@@ -29,4 +30,12 @@ public class ChangeEmission : MonoBehaviour {
     }
     emissiveMaterial.SetColor("_EmissionColor", color * emission);
 	}
+
+  public void RestoreDefaultColor() {
+    color = defaultColor;
+  }
+
+  public void SetEmissionColor(Color newColor) {
+    color = newColor;
+  }
 }
