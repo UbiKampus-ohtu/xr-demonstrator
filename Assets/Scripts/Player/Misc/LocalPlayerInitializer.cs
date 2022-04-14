@@ -11,6 +11,7 @@ public class LocalPlayerInitializer : NetworkBehaviour {
       Destroy(playerMenu);
     } else {
       gameObject.AddComponent<AudioListener>();
+      gameObject.AddComponent<PlayerPortal>();
     }
   }
 }
