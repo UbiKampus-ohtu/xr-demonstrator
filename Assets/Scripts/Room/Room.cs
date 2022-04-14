@@ -55,8 +55,10 @@ public class Room : NetworkBehaviour {
   }
 
   private void Awake() {
+    GameObject doorPrefab = Resources.Load("Prefabs/Furniture/Door") as GameObject;
     GameObject curtainPrefab = Resources.Load("Prefabs/Furniture/CurtainRoot") as GameObject;
     SpawnWallElements(curtainPrefab, curtains);
+    SpawnWallElements(doorPrefab, doors);
     SetWallElementState(occupied, curtains);
     SetWallElementState(occupied, doors);
     SpawnTriggerVolume();
@@ -86,6 +88,7 @@ public class Room : NetworkBehaviour {
     foreach(WallElement wallElement in wallElements) {
       Animator wallElementAnimator = wallElement.instance.GetComponentInChildren<Animator>();
       if (wallElementAnimator == null) {
+        wallElement.instance.SetActive(state);
         continue;
       }
       wallElementAnimator.SetBool("closed", state);
@@ -93,6 +96,8 @@ public class Room : NetworkBehaviour {
   }
 
   private void SpawnWallElements(GameObject wallElementPrefab, List<WallElement> wallElements) {
+    if (wallElements.Count == 0 || wallElementPrefab == null) return;
+
     for (int i = 0; i < wallElements.Count; i++) {
       WallElement wallElement = wallElements[i];
       GameObject thisWallElement = Instantiate(wallElementPrefab);
