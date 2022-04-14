@@ -83,6 +83,7 @@ public class Nopeustesti : MonoBehaviour {
       return;
     }
     int lastButtonIndex = buttonQueue.Dequeue();
+    Debug.LogFormat("{0} {1}", param, lastButtonIndex);
     if (int.Parse(param) != lastButtonIndex) {
       audioSource.Stop();
       started = false;

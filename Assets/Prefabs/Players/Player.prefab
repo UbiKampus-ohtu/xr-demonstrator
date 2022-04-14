@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5321442075362036194}
   - component: {fileID: 7484653287983802736}
   - component: {fileID: 7016036418535597453}
+  - component: {fileID: 1564436934173168521}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -154,6 +155,20 @@ MonoBehaviour:
   showOverlay: 0
   overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
   target: {fileID: 40009098175836490}
+--- !u!114 &1564436934173168521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40009097998235988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d34ef39882cb227488a3e7f99a311089, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
 --- !u!1 &40009098175836491
 GameObject:
   m_ObjectHideFlags: 0
@@ -634,11 +649,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Menu
-      objectReference: {fileID: 0}
-    - target: {fileID: 4228790976530612433, guid: b4e46c5c67ff425428abc406abe92e07,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9036021704897472963, guid: b4e46c5c67ff425428abc406abe92e07,
         type: 3}
