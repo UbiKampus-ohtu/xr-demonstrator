@@ -78,7 +78,12 @@ public class Room : NetworkBehaviour {
   }
 
   private void SpawnTriggerVolume() {
-    BoxCollider triggerVolume = gameObject.AddComponent<BoxCollider>();
+    GameObject trigger = new GameObject("room collider origin");
+    trigger.transform.parent = transform;
+    trigger.transform.localPosition = Vector3.zero;
+    trigger.transform.localRotation = Quaternion.identity;
+    trigger.layer = 5;
+    BoxCollider triggerVolume = trigger.AddComponent<BoxCollider>();
     triggerVolume.center = new Vector3(0, 1.5f, 0);
     triggerVolume.size = new Vector3(width * 2, 3f, depth * 2);
     triggerVolume.isTrigger = true;

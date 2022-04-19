@@ -23,7 +23,7 @@ public class Teleportation : MonoBehaviour {
   }
 
   private bool debounced = true;
-  void Update() {
+  void LateUpdate() {
     bool keyPressed = mv.Player.teleport.ReadValue<Vector2>().y >= 0.3f;
     if (debounced && keyPressed) {
       debounced = false;
@@ -34,7 +34,7 @@ public class Teleportation : MonoBehaviour {
     }
 
     if (keyPressed) {
-      UpdateTeleportationCircle();
+      UpdateTeleportationCircle(transform.position, transform.TransformDirection(Vector3.forward));
     } else {
       return;
     }
@@ -49,23 +49,37 @@ public class Teleportation : MonoBehaviour {
     teleporterHandle = sphere.GetComponent<TeleporterHandle>();
   }
 
-  private void UpdateTeleportationCircle() {
+  private void UpdateTeleportationCircle(Vector3 rayOrigin, Vector3 rayDirection, int depth = 0) {
     if (sphere == null) return;
 
-    LayerMask mask = LayerMask.GetMask("Default");
+    LayerMask targetMask = LayerMask.GetMask("Default");
+  
     float distance = 10f;
 
-    Ray ray = new Ray(transform.position, transform.TransformDirection(Vector3.forward));
-    if (Physics.Raycast(ray, out var hit, distance, mask)) {
+    Ray ray = new Ray(rayOrigin, rayDirection);
+    if (Physics.Raycast(ray, out var hit, distance, targetMask)) {
       if (hit.transform.CompareTag("Floor")) {
-        deltaPosition = hit.point - ray.origin + new Vector3(0, 0.05f, 0);
+        deltaPosition = hit.point - transform.position + new Vector3(0, 0.05f, 0);
         sphere.transform.position = hit.point;
         teleporterHandle.setValid(true);
       } else {
-        deltaPosition = Vector3.zero;
-        sphere.transform.position = hit.point;
-        teleporterHandle.setValid(false);
+        if (depth < 1) {
+          float hitDistance = (hit.point - transform.position).magnitude;
+          Vector3 backtrack = (hit.point - transform.position).normalized;
+          Vector3 newRayOrigin = hit.point - backtrack;
+          UpdateTeleportationCircle(newRayOrigin, -Vector3.up, depth + 1);
+        } else {
+          deltaPosition = Vector3.zero;
+          sphere.transform.position = hit.point;
+          teleporterHandle.setValid(false);
+        }
       }
+    } else if (depth < 1) {
+      Vector3 newRayOrigin = transform.TransformPoint(Vector3.forward * distance);
+      UpdateTeleportationCircle(newRayOrigin, -Vector3.up, depth + 1);
+    } else {
+      deltaPosition = Vector3.zero;
+      teleporterHandle.setValid(false);
     }
   }
 

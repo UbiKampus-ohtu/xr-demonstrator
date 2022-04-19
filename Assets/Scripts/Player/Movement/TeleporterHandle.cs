@@ -14,6 +14,14 @@ public class TeleporterHandle : MonoBehaviour {
   }
 
   public void setValid(bool state) {
+    if (valid != state) {
+      SkinnedMeshRenderer meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+      if (state) {
+        meshRenderer.enabled = true;
+      } else {
+        meshRenderer.enabled = false;
+      }
+    }
     valid = state;
   }
 
