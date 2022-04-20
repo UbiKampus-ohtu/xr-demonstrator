@@ -32,7 +32,7 @@ jobs:
           artifactsPath: ${{ matrix.testMode }}-artifacts
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           checkName: ${{ matrix.testMode }} Test Results
-          unityVersion: 2019.4.35f1
+          unityVersion: 2020.3.32f1
       - uses: actions/upload-artifact@v2
         if: always()
         with:
