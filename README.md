@@ -20,4 +20,4 @@ The project was created with `Unity Version: 2020.3.32f1`.
 
 ## User manual
 
-....
+Instructions for using and installing the application for end user can be found [here](https://github.com/UbiKampus-ohtu/xr-demonstrator/wiki/User-manual) in the Wiki.
