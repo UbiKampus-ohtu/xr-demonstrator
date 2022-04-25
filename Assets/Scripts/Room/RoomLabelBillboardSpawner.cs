@@ -8,5 +8,6 @@ public class RoomLabelBillboardSpawner : MonoBehaviour {
     GameObject roomLabel = Instantiate(labelPrefab, transform.position + new Vector3(0, 2.4f, 0), Quaternion.Euler(0, 180, 0));
     TextMesh labelTextMesh = roomLabel.GetComponent<TextMesh>();
     labelTextMesh.text = gameObject.name;
+    roomLabel.transform.parent = transform;
   }
 }

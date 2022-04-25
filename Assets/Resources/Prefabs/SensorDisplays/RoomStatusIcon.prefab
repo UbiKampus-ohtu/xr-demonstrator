@@ -91,6 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3695080567070429938}
   - component: {fileID: 2429204948579801239}
+  - component: {fileID: 1365342370240966746}
   m_Layer: 0
   m_Name: RoomStatusIcon
   m_TagString: MotionSensor
@@ -127,6 +128,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   independent: 0
+--- !u!205 &1365342370240966746
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3695080567070429937}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 10.000008
+  m_FadeMode: 2
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.9029967
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 3695080567644261566}
+  m_Enabled: 1
 --- !u!1 &3695080567644261554
 GameObject:
   m_ObjectHideFlags: 0
