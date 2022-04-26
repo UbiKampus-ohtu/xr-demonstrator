@@ -26,6 +26,19 @@ public class PlayerMovement : NetworkBehaviour {
       xrInputs = gameObject.AddComponent<XRInputs>();
       xrEnabled = true;
     }
+
+    InitHands(transform.Find("Offset"));
+  }
+
+  private void InitHands(Transform handRoot) {
+    int rootChildCount = handRoot.childCount;
+    for (int i = 0; i < rootChildCount; i++) {
+      Transform child = handRoot.GetChild(i);
+      if (child.name.Contains("GenericHand")) {
+        GenericHand genericHand = child.GetComponent<GenericHand>();
+        genericHand.initialize();
+      }
+    }
   }
 
   public override void OnStartClient() {

@@ -1,11 +1,8 @@
 {
-    "name": "Movement",
+    "name": "Effects",
     "rootNamespace": "",
     "references": [
-        "GUID:30817c1a0e6d646d99c048fc403f5979",
-        "GUID:829747c9f64da6c43a7e366f369b6899",
-        "GUID:75469ad4d38634e559750d17036d5f7c",
-        "GUID:84148f7c293e11a4794c12ea6c48b152"
+        "GUID:848b6ae1c3b80fa4fa56397b9ffbb9b5"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

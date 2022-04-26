@@ -1,11 +1,9 @@
 {
-    "name": "Movement",
+    "name": "World",
     "rootNamespace": "",
     "references": [
         "GUID:30817c1a0e6d646d99c048fc403f5979",
-        "GUID:829747c9f64da6c43a7e366f369b6899",
-        "GUID:75469ad4d38634e559750d17036d5f7c",
-        "GUID:84148f7c293e11a4794c12ea6c48b152"
+        "GUID:422f2499eac9f364799ed9405896f601"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -10,7 +10,7 @@ public class GenericHand : MonoBehaviour {
   public bool isLeftHand = false;
   public Vector3 handModelOffset = Vector3.zero;
 
-  private void Start() {
+  public void initialize() {
     animator = GetComponentInChildren<Animator>();
     context = gameObject.AddComponent<HandContext>();
     controller = gameObject.AddComponent<HandController>();
