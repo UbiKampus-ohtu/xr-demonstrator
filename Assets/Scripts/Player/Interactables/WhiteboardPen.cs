@@ -5,13 +5,16 @@ using UnityEngine;
 public class WhiteboardPen : MonoBehaviour {
 
   public int brushSize = 8;
+  public float maxDistance = 0.3f;
+  public Vector3 offset = Vector3.zero;
   private Vector2 previousPosition = Vector2.zero;
   private bool drawingStarted = false;
 
   private RaycastHit getNearestSurface() {
     RaycastHit hit;
-    LayerMask mask = LayerMask.GetMask("Default");
-    if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 0.1f, mask)) {
+    LayerMask mask = LayerMask.GetMask("UI");
+    Vector3 rayOrigin = transform.TransformPoint(offset);
+    if (Physics.Raycast(rayOrigin, transform.TransformDirection(Vector3.forward), out hit, maxDistance, mask)) {
       return hit;
     }
     return new RaycastHit();

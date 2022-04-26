@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4750546598977316077}
   - component: {fileID: 4750546598977316078}
   - component: {fileID: 4750546598977316066}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Canvas
   m_TagString: Interaction
   m_Icon: {fileID: 0}
@@ -57,6 +57,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -81,6 +82,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &4750546598977316078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,7 +119,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4750546598985912538}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Whiteboard
   m_TagString: Interaction
   m_Icon: {fileID: 0}

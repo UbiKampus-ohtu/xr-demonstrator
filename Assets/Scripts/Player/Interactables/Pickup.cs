@@ -6,15 +6,24 @@ public class Pickup : MonoBehaviour {
   public bool precisionTool = false;
   public Vector3 offset = Vector3.zero;
   
+  private bool pickedUp = false;
+  private Transform parent;
+
   public void take(Transform parent) {
-    transform.parent = parent;
-    if (precisionTool) {
-      transform.localRotation = Quaternion.identity;
-      transform.localPosition = offset;
-    }
+    pickedUp = true;
+    this.parent = parent;
   }
 
   public void drop() {
-    transform.parent = null;
+    pickedUp = false;
+    parent = null;
+  }
+
+  private void LateUpdate() {
+    if (!pickedUp || parent == null) return;
+
+    transform.position = parent.position;
+    transform.rotation = parent.rotation;
+
   }
 }

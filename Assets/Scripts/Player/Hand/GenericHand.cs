@@ -23,7 +23,7 @@ public class GenericHand : MonoBehaviour {
     } else {
       context.handModelOffset = handModelOffset;
       if (isLeftHand) {
-        Destroy(gameObject);
+        transform.position = Vector3.zero;
       }
     }
   }
