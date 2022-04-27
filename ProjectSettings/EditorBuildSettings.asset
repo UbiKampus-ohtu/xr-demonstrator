@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/RoomNetworkTesting.unity
     guid: 0407d784f759d1a439c561ea26979049
-  - enabled: 0
+  - enabled: 1
     path: Assets/TestScenes/LocalPlayerTest.unity
     guid: ab2c9eb10274f6a4e8977ddeb2c5a178
   m_configObjects:
