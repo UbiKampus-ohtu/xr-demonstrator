@@ -3,12 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
-public class RoomPayload {
-  public string type;
-  public int value;
-}
-
 public class RoomNetworkListener : MonoBehaviour {
   private string roomName;
 
@@ -17,15 +11,17 @@ public class RoomNetworkListener : MonoBehaviour {
     Mirror.XRDemoLauncher demoLauncher = world.GetComponent<Mirror.XRDemoLauncher>();
     if (demoLauncher.networkRole == Mirror.XRDemoLauncher.NetworkRoleSelector.Client) return;
     
-    roomName = gameObject.name;
+    roomName = gameObject.name.ToLower();
     MQTTManager.startListening(roomName, ProcessPayload);
   }
 
   private void ProcessPayload(object payload) {
-    RoomPayload roomPayload = JsonUtility.FromJson<RoomPayload>((string) payload);
+    RoomPayload roomPayload = payload as RoomPayload;
     if (roomPayload == null || roomPayload.type == null) {
       return;
     }
+
+    Debug.Log(roomPayload);
 
     string eventId = String.Format("server {0} {1}", roomName, roomPayload.type);
     if (roomPayload.type.Equals("motionSensor")) {

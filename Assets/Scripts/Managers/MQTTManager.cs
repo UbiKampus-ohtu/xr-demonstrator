@@ -3,7 +3,16 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using UnityEngine;
+using System.Text;
 
+[Serializable]
+public class RoomPayload {
+  public string type;
+  public int value;
+  public override string ToString(){
+    return type + " " + value;
+  }
+}
 public class MQTTManager : MonoBehaviour {
   public string URI = "localhost";
   public int port = 9000;
@@ -58,9 +67,27 @@ public class MQTTManager : MonoBehaviour {
     return new IPEndPoint(addressList[0], port);
   }
 
-  private void parseMessage(byte[] data) {
-    if (data.Length == 0) return;
-    //datan pyörittely tähän, loppuun triggerit
+  private void parseMessage(byte[] bytes) {
+    if (bytes.Length == 0) return;
+    string data = Encoding.UTF8.GetString(bytes);
+
+    MQTTMotionSensor motionMessage = JsonUtility.FromJson<MQTTMotionSensor>(data);
+    if (MQTTTestData.isMotionSensor(motionMessage)) {
+      RoomPayload roomPayload = new RoomPayload();
+      roomPayload.type = "motionSensor";
+      roomPayload.value = 1;
+      trigger(motionMessage.topic, roomPayload);
+      return;
+    }
+
+    MQTTReservation reservationMessage = JsonUtility.FromJson<MQTTReservation>(data);
+    if (MQTTTestData.isReservation(reservationMessage)) {
+      RoomPayload roomPayload = new RoomPayload();
+      roomPayload.type = "reserved";
+      roomPayload.value = reservationMessage.data.payload.currentTopic.Contains("VARATTU") ? 1 : 0;
+      trigger(reservationMessage.topic, roomPayload);
+      return;
+    }
   }
 
   private void onMessage(IAsyncResult message) {
@@ -94,9 +121,13 @@ public class MQTTManager : MonoBehaviour {
     }
   }
 
-  private void trigger(string eventId, object payload) {
+  private void trigger(string topic, object payload) {
+    string [] subs = topic.Split('/');
+    if (subs.Length < 2) return;
+    string roomName = subs[1];
+
     Action<object> thisEvent = null;
-    if (instance.eventDictionary.TryGetValue(eventId, out thisEvent)) {
+    if (instance.eventDictionary.TryGetValue(roomName, out thisEvent)) {
       thisEvent.Invoke(payload);
     }
   }

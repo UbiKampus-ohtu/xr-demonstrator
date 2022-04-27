@@ -13,7 +13,7 @@ public class MotionSensorLight : MonoBehaviour {
   }
 
   private void OnEnable() {
-    eventId = string.Format("{0} motionSensor", gameObject.name);
+    eventId = string.Format("{0} motionSensor", gameObject.name.ToLower());
     EventManager.startListening(eventId, MotionTrigger);
   }
 

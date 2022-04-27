@@ -73,8 +73,8 @@ public class Room : NetworkBehaviour {
     gameObject.AddComponent<RoomNetworkListener>();
     SetWallElementState(occupied, curtains);
     SetWallElementState(occupied, doors);
-    EventManager.startListening(string.Format("server {0} reserved", gameObject.name), Reservation);
-    EventManager.startListening(string.Format("server {0} motionSensor", gameObject.name), MotionSensor);
+    EventManager.startListening(string.Format("server {0} reserved", gameObject.name.ToLower()), Reservation);
+    EventManager.startListening(string.Format("server {0} motionSensor", gameObject.name.ToLower()), MotionSensor);
   }
 
   private void SpawnTriggerVolume() {

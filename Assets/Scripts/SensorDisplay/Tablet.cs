@@ -17,7 +17,7 @@ public class Tablet : MonoBehaviour {
   }
 
   private void OnEnable() {
-    eventId = string.Format("{0} reserved", transform.parent.name);
+    eventId = string.Format("{0} reserved", transform.parent.name.ToLower());
     EventManager.startListening(eventId, UpdateReservation);
   }
 
