@@ -235,7 +235,7 @@ PrefabInstance:
     - target: {fileID: 7043198282811532140, guid: 8ae809f3965909743a469d46bc49dde9,
         type: 3}
       propertyPath: networkRole
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7901808269339267037, guid: 8ae809f3965909743a469d46bc49dde9,
         type: 3}

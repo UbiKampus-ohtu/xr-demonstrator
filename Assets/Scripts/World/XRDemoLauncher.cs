@@ -17,6 +17,7 @@ namespace Mirror {
     }
 
     public NetworkRoleSelector networkRole;
+    public string ip = "localhost";
 
     private NetworkManager manager;
 
@@ -30,16 +31,19 @@ namespace Mirror {
 
     private void readCLIArguments() {
       string [] args = System.Environment.GetCommandLineArgs();
+      bool getIp = false;
       foreach (string argument in args) {
-        if (argument.Contains("-client")) {
+        if (getIp) {
+          getIp = false;
+          ip = argument;
+        } else if (argument.Contains("-client")) {
           networkRole = NetworkRoleSelector.Client;
-          break;
         } else if (argument.Contains("-listeningServer")) {
           networkRole = NetworkRoleSelector.ListeningServer;
-          break;
         } else if (argument.Contains("-dedicatedServer")) {
           networkRole = NetworkRoleSelector.Host;
-          break;
+        } else if (argument.Contains("-ip")) {
+          getIp = true;
         }
       }
     }
@@ -48,6 +52,7 @@ namespace Mirror {
       // wait for scene to initialize
       yield return CoroutineUtils.WaitForFrames(1);
 
+      manager.networkAddress = ip;
       switch (networkRole) {
         case NetworkRoleSelector.ListeningServer:
           manager.StartHost();
