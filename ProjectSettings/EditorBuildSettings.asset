@@ -17,11 +17,11 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/RoomNetworkTesting.unity
     guid: 0407d784f759d1a439c561ea26979049
-  - enabled: 1
+  - enabled: 0
     path: Assets/TestScenes/LocalPlayerTest.unity
     guid: ab2c9eb10274f6a4e8977ddeb2c5a178
   m_configObjects:
-    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: a2b56e71099a2124ab40097270c499e0,
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 54942d15f8df9d04f965741771729258,
       type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 7fef049bb90c3ee4b9b3d0748003508f,
       type: 2}
