@@ -52,6 +52,9 @@ namespace Mirror {
       // wait for scene to initialize
       yield return CoroutineUtils.WaitForFrames(1);
 
+      Cursor.lockState = CursorLockMode.Confined;
+      Cursor.visible = false;
+
       manager.networkAddress = ip;
       switch (networkRole) {
         case NetworkRoleSelector.ListeningServer:
