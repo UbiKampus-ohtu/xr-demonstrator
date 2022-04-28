@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class RoomStatusIcon : MonoBehaviour {
 	private float timer;
-	private string motionEventId;
-  private string reservationEventId;
+	public string motionEventId;
+  public string reservationEventId;
   private bool hasMovement = false;
 	private bool movementInRoom = false;
   private float timeSinceLastMovement = 0;

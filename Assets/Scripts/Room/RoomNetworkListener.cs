@@ -21,8 +21,6 @@ public class RoomNetworkListener : MonoBehaviour {
       return;
     }
 
-    Debug.Log(roomPayload);
-
     string eventId = String.Format("server {0} {1}", roomName, roomPayload.type);
     if (roomPayload.type.Equals("motionSensor")) {
       EventManager.trigger(eventId, "");

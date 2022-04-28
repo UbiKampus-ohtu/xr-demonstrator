@@ -62,7 +62,7 @@ public class Room : NetworkBehaviour {
     SetWallElementState(occupied, curtains);
     SetWallElementState(occupied, doors);
     SpawnTriggerVolume();
-    roomName = gameObject.name;
+    roomName = gameObject.name.ToLower();
     gameObject.AddComponent<RoomLabelBillboardSpawner>();
     gameObject.AddComponent<RoomMotionSensorSpawner>();
     gameObject.AddComponent<RoomWindowLabel>();
@@ -166,6 +166,7 @@ public class Room : NetworkBehaviour {
   }
 
   public void MotionSensor(string param) {
+    Debug.Log("moi");
     MotionSyncHook(motionCounter, motionCounter + 1);
   }
 

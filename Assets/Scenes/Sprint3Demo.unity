@@ -403,6 +403,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11dd66ce628335b00ae067e44af81f30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  motionEventId: 
+  reservationEventId: 
   independent: 1
 --- !u!1 &84302834
 GameObject:
@@ -973,6 +975,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11dd66ce628335b00ae067e44af81f30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  motionEventId: 
+  reservationEventId: 
   independent: 1
 --- !u!1 &193892161
 GameObject:
@@ -1242,6 +1246,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11dd66ce628335b00ae067e44af81f30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  motionEventId: 
+  reservationEventId: 
   independent: 1
 --- !u!1001 &365023288
 PrefabInstance:
@@ -2238,6 +2244,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11dd66ce628335b00ae067e44af81f30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  motionEventId: 
+  reservationEventId: 
   independent: 1
 --- !u!1 &728841285
 GameObject:
@@ -2299,6 +2307,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11dd66ce628335b00ae067e44af81f30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  motionEventId: 
+  reservationEventId: 
   independent: 1
 --- !u!1 &762260991
 GameObject:
@@ -2911,6 +2921,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11dd66ce628335b00ae067e44af81f30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  motionEventId: 
+  reservationEventId: 
   independent: 1
 --- !u!1 &842352770
 GameObject:
@@ -3782,6 +3794,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11dd66ce628335b00ae067e44af81f30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  motionEventId: 
+  reservationEventId: 
   independent: 1
 --- !u!1001 &1055327897
 PrefabInstance:
@@ -6238,6 +6252,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11dd66ce628335b00ae067e44af81f30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  motionEventId: 
+  reservationEventId: 
   independent: 1
 --- !u!1 &1565165622
 GameObject:
@@ -7069,6 +7085,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11dd66ce628335b00ae067e44af81f30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  motionEventId: 
+  reservationEventId: 
   independent: 1
 --- !u!1001 &1752405021
 PrefabInstance:
@@ -7420,6 +7438,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11dd66ce628335b00ae067e44af81f30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  motionEventId: 
+  reservationEventId: 
   independent: 1
 --- !u!1 &1852614434
 GameObject:
@@ -7465,6 +7485,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11dd66ce628335b00ae067e44af81f30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  motionEventId: 
+  reservationEventId: 
   independent: 1
 --- !u!1 &1860787026
 GameObject:
@@ -7798,6 +7820,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11dd66ce628335b00ae067e44af81f30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  motionEventId: 
+  reservationEventId: 
   independent: 1
 --- !u!1 &1931429298
 GameObject:
@@ -8089,6 +8113,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11dd66ce628335b00ae067e44af81f30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  motionEventId: 
+  reservationEventId: 
   independent: 1
 --- !u!1 &2004480798
 GameObject:
@@ -8134,6 +8160,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11dd66ce628335b00ae067e44af81f30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  motionEventId: 
+  reservationEventId: 
   independent: 1
 --- !u!1001 &2020040434
 PrefabInstance:
