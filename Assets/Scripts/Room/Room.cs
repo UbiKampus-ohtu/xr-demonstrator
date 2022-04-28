@@ -64,7 +64,7 @@ public class Room : NetworkBehaviour {
     SpawnTriggerVolume();
     roomName = gameObject.name.ToLower();
     gameObject.AddComponent<RoomLabelBillboardSpawner>();
-    gameObject.AddComponent<RoomMotionSensorSpawner>();
+    //gameObject.AddComponent<RoomMotionSensorSpawner>();
     gameObject.AddComponent<RoomWindowLabel>();
   }
 

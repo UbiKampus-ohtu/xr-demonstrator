@@ -20,7 +20,7 @@ public class RoomStatusIcon : MonoBehaviour {
   private void OnEnable() {
     string sensorName = transform.parent != null && !independent ? transform.parent.name : transform.name;
     sensorName = sensorName.ToLower();
-		movementInRoom = false;
+    movementInRoom = false;
 
 		motionEventId = string.Format("{0} motionSensor", sensorName);
     reservationEventId = string.Format("{0} reserved", sensorName);
