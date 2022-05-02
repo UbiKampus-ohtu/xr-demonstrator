@@ -25,9 +25,9 @@ The project was created with `Unity Version: 2020.3.32f1`.
 * Feture is peer reviewed 
 * Feature doesn't produce build errors
 
-## User manual
+## Wiki - User manual, architecture, hints for future developers
 
-Instructions for using and installing the application for end user can be found [here](https://github.com/UbiKampus-ohtu/xr-demonstrator/wiki/User-manual) in the Wiki.
+Architecture descriptions and instructions for using and installing the application for end user can be found [here](https://github.com/UbiKampus-ohtu/xr-demonstrator/wiki/User-manual) in the Wiki.
 
 ## Demo video of the project
 
