@@ -34,4 +34,4 @@ Architecture descriptions and instructions for using and installing the applicat
 
 ## Demo video of the project
 
-A demo of the project can be found [here](https://www.youtube.com/watch?v=wGkQy7oOwrc)
+[![](https://raw.githubusercontent.com/UbiKampus-ohtu/xr-demonstrator/main/.docimgs/xr_social.png)](https://www.youtube.com/watch?v=wGkQy7oOwrc)
