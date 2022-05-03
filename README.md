@@ -2,6 +2,9 @@
 
 ![GitHub Actions](https://github.com/Ubikampus-ohtu/xr-demonstrator/workflows/CI/badge.svg)
 
+![xr-demo](https://user-images.githubusercontent.com/70325495/166464183-7ef394f6-f2d0-4b32-bd47-f9c419cbca11.png)
+
+
 ## Description 
 
 The Ubicampus XR-Demonstrator enables you to visit the Ubikampus premises virtually. 
