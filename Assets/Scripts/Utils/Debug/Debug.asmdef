@@ -1,9 +1,7 @@
 {
     "name": "Debug",
     "rootNamespace": "",
-    "references": [
-        "GUID:848b6ae1c3b80fa4fa56397b9ffbb9b5"
-    ],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
